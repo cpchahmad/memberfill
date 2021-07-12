@@ -26,16 +26,23 @@ class GeneralController extends Controller
             array_push($soldout_array,$total);
 
             if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id){
-                $data = Product_Varient::where('created_at',"=","2021-07-08 08:32:27")
-                    ->where('product_id',"=","62")->get();
-                $total_count = 0 ;
-                foreach ($data as $quantity)
-                    $total_count += $quantity->sold_quantity;
+
+                $data = Product_Varient::whereDate( 'updated_at', '>', now()->subDays(1))->where('product_id',$product->id)->get()->sum('sold_quantity');
+
+            }elseif ($preference->graph_interval == 'weekly' && $preference->shop_id == Auth::user()->id){
+
+                $data = Product_Varient::whereDate( 'updated_at', '>', now()->subDays(7))->where('product_id',$product->id)->get()->sum('sold_quantity');
+
+            }elseif ($preference->graph_interval == 'monthly' && $preference->shop_id == Auth::user()->id){
+
+                $data = Product_Varient::whereDate( 'updated_at', '>', now()->subDays(30))->where('product_id',$product->id)->get()->sum('sold_quantity');
+            }else{
+                $data = Product_Varient::where('product_id',"=","62")->get()->sum('sold_quantity');
+
             }
-            array_push($total_after_timefilter,$total_count);
+            array_push($total_after_timefilter,$data);
 
         }
-
         return view('users.generals.general')->with([
             'page_title' => 'General',
             'products' => $products,

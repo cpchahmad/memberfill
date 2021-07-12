@@ -112,7 +112,7 @@
 
                              <a  href="#"> <div class="flex-row min-content" data-toggle="collapse" data-target="#{{$product->id}}" aria-expanded="true" aria-controls="collapseOne">{{$product->title}}</div></a>
                             <div class="flex-row items">
-                                    <canvas id="canvas-graph-two" data-labels="[234,23,324,324]" data-values="[{{$total_after_timefilter[0]}} , {{$total_after_timefilter[1]}} ]"></canvas>
+                                    <canvas id="canvas-graph-two" data-labels="[0,100,200,300]" data-values="[0,{{$total_after_timefilter[$index]}}]"></canvas>
                             </div>
                             <div class="flex-row items">145</div>
 

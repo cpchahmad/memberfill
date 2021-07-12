@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Product_Varient;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+Use \Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -65,6 +66,7 @@ class OrderController extends Controller
                     $varient = Product_Varient::where('shopify_variant_id', $item->variant_id)->first();
                      if (isset($varient)) {
                          $varient->sold_quantity += $varient_qtn;
+                         $varient->updated_at = Carbon::now();
                          $varient->save();
                      }
             }
