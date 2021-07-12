@@ -18,11 +18,9 @@ class GeneralController extends Controller
         $soldout_array = [];
         $total_after_timefilter = [];
         foreach ($products as $product) {
-            $total_soldout = 0;
-            foreach ($product->Product_Varients as $varient) {
-                $total_soldout += $varient->sold_quantity;
-            }
-            $total = ($total_soldout);
+
+            $total = $product->Product_Varients->sum('sold_quantity');
+
             array_push($soldout_array,$total);
 
             if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id){
@@ -54,20 +52,4 @@ class GeneralController extends Controller
         ]);
     }
 }
-//$ordersQ = Order::query()
-//    ->select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total, sum(total_price) as total_sum'))
-//    ->groupBy('date')
-//    ->newQuery();
-//
-//$ordersQ->get();
-//
-//$graph_one_order_dates = $ordersQ->pluck('date')->toArray();
-//$graph_one_order_values = $ordersQ->pluck('total')->toArray();
-//$graph_two_order_values = $ordersQ->pluck('total_sum')->toArray();
 
-//        if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id{
-////            $data = DB::raw('SELECT * FROM `product_varients` WHERE created_at>= NOW() - INTERVAL 1 DAY')->get();
-//            $data = Product_Varient::where('created_at',"=","2021-07-08 08:32:27")
-//                ->where('product_id',"=","62")->get();
-//            dd($data);
-//        }
