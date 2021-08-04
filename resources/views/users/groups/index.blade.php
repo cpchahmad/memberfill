@@ -1,78 +1,131 @@
 @extends('layouts.index')
 @section('content')
 
-    <div class="col-lg-12 col-md-12 p-4">
+    <style>
+        .items{
+            padding-top: 5%;
+        }
+    </style>
         <div class="row ">
-            <div class="col-md-6 pl-3">
+            <div class="col-md-6 ">
                 <h3>Groups</h3>
             </div>
-            <div class="col-md-6 text-end pr-3">
+            <div class="col-md-6 text-end">
                 <a href="{{route('create/group')}}"><button type="button" class="btn btn-primary float-right">Add Group</button></a>
             </div>
         </div>
-        <!-- start row -->
-        @if (count($groups) > 0)
-            @foreach($groups as $group)
 
-        <div class="accordion" id="group-{{$group->id}}">
+    <div class="col-lg-12 col-md-12 p-4 bg-white">
 
-            <div class="card">
-                <div class="card-header bg-secondary" id="headingone">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true" aria-controls="collapseOne">
-                            {{$group->name}}
-                        </button>
-                    </h2>
-                </div>
-
-                <div id="{{$group->id}}" class="collapse" aria-labelledby="headingone" data-parent="#group-{{$group->id}}">
-
-                        <table class="table">
-                            <thead class="border-0">
-                            <tr>
-                                <th scope="col">Group Id</th>
-                                <th scope="col">Varient Id</th>
-                                <th scope="col">Limit</th>
-                              <div class="text-end"><th scope="col">Product Id</th></div>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                                {{--                            @dd($group->group_details[0]->has_products->varients)--}}
-                               @foreach($group->group_details as $group_detail)
-                                <tr>
-
-                                    <td>
-                                        {{$group_detail->group_id}}
-                                    </td>
-                                    <td>
-                                        {{$group_detail->product_id}}
-                                    </td>
-
-                                    <td>
-                                        @if($group->limit)
-                                            <div class="badge badge-pill" style="background-color: greenyellow!important;">
-                                                {{$group->limit}}</div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="tect-end">{{$group->id}}</div>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-
-                </div>
-            </div>
+        <div class="d-flex justify-content-between">
+            <div class="col-md-3 "><h6>Title</h6></div>
+            <div class="col-md-3 "><h6>Limit</h6></div>
+            <div class="col-md-3"><h6>Products</h6></div>
+            <div class="col-md-3"><h6>Graph</h6></div>
 
         </div>
-            @endforeach
-        @else
-            <p>No Groups Found</p>
-    @endif
+        @if (count($groups) > 0)
+            @foreach($groups as $index => $group)
 
-        <!-- end row -->
+                    <div class="card">
+                        <div class="card-header bg-white" id="headingOne">
+                            <div class="d-flex justify-content-between">
+
+                                <div class="col-md-3 items">
+                                    <a href="#">
+                                        <div class="flex-row min-content" >{{$group->name}}</div>
+                                    </a></div>
+
+                                <div class="col-md-3 items">
+                                    <div>{{$group->limit}}</div>
+                                </div>
+
+                                <div class="col-md-3  items">
+                                    <div>{{count($group->group_details)}}</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <canvas height="200" class="canvas-graph-one" data-labels={{json_encode($graph_labels[$index])}} data-values={{json_encode($graph_values[$index])}}></canvas>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                @endforeach
+
+                @else
+                    <p>No Groups Found</p>
+            @endif
+            <!-- end row -->
+                <div class="pagination">
+                    {{ $groups->links("pagination::bootstrap-4") }}
+                </div>
     </div>
+
+
 @endsection
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script>
+    $(document).ready(function () {
+        if ($('body').find('.canvas-graph-one').length > 0) {
+
+            $('.canvas-graph-one').each(function (index,value) {
+                console.log($(value).attr('data-values'))
+
+                var config = {
+                    type: 'line',
+                    data: {
+                        labels: JSON.parse($(value).attr('data-labels')),
+                        datasets: [{
+                            label: 'Products',
+                            backgroundColor: '#5c80d1',
+                            borderColor: '#5c80d1',
+                            data: JSON.parse($(value).attr('data-values')),
+                            fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            // text: 'Summary Orders Sales'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Date'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Products'
+                                }
+                            }]
+                        }
+                    }
+                };
+                var ctx_2 = value.getContext('2d');
+                window.myLine = new Chart(ctx_2, config);
+            });
+
+        }
+    });
+</script>
+

@@ -83,7 +83,7 @@ input:checked + .slider:before {
                             <div class="col-md-6" style="font-weight:600">SoldOut Quantity</div>
                             <div class="col-md-6">
                                 <label class="switch">
-                                    <input type="checkbox" >
+                                    <input type="checkbox" name="enable_status" value="1">
                                     <span class="slider round"></span>
                                 </label>
                             </div>

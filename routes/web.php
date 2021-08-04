@@ -40,6 +40,9 @@ Route::group(['middleware'=>['auth.shopify','Role']], function () {
 
     //General
     Route::get('/generals', [App\Http\Controllers\GeneralController::class, 'index'])->name('generals');
+    Route::get('/product-soldout/{id}', [App\Http\Controllers\GeneralController::class, 'product_soldout'])->name('product-soldout');
+    Route::get('/varient-soldout/{id}', [App\Http\Controllers\GeneralController::class, 'varient_soldout'])->name('varient-soldout');
+
 
     //Preferences
     Route::get('/preference', [App\Http\Controllers\PreferenceController::class, 'index'])->name('preference');
