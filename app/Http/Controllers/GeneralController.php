@@ -42,17 +42,17 @@ class GeneralController extends Controller
                     $data = Order_line_Item::where('shopify_product_id', $product->shopify_product_id)->get();
 
                 }
-            }
-            $quantity_array = [];
-            $date_filter = [];
-            foreach ($data as $key){
-                array_push($quantity_array,$key->quantity);
-                array_push($date_filter,$key->created_at->format('Y-m-d'));
-            }
 
-            array_push($timefilter_value,$quantity_array);
-            array_push($timefilter_date,$date_filter);
+                $quantity_array = [];
+                $date_filter = [];
+                foreach ($data as $key) {
+                    array_push($quantity_array, $key->quantity);
+                    array_push($date_filter, $key->created_at->format('Y-m-d'));
+                }
 
+                array_push($timefilter_value, $quantity_array);
+                array_push($timefilter_date, $date_filter);
+            }
             $product_stockIn = Product_Varient::where('product_id',$product->id)->get()->sum('inventory_quantity');
             array_push($total_product_stockIn,$product_stockIn);
 
