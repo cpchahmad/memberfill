@@ -16,6 +16,11 @@ class Group_Varient extends Model
     ];
     public function has_products()
     {
-        return $this->hasOne(Product::class, 'id', 'id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    public function has_varients(){
+        return $this->hasOne(Product_Varient::class,'id','varient_id');
+    }
+
 }

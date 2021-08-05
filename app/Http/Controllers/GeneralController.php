@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Group_Varient;
 use App\Models\Order_line_Item;
 use App\Models\Preference;
 use App\Models\Product;
@@ -54,10 +55,11 @@ class GeneralController extends Controller
             array_push($total_product_stockIn,$product_stockIn);
 
         }
-
         $groups = Group::get();
         $graph_values = [];
         $graph_labels = [];
+        $overall_groups_price = [];
+        $overall_group_order_price = [];
         foreach ($groups as $group) {
             $data = DB::table('group_varients')
                 ->where('group_id', $group->id)
@@ -69,8 +71,22 @@ class GeneralController extends Controller
             array_push($graph_values,$value);
             array_push($graph_labels,$label);
 
+            $group_products = $group->group_details;
+            $group_products_price = 0 ;
+            $group_products_order_price = 0 ;
+            $order_lineitem = Order_line_Item::query();
+            foreach ($group_products as $group_product){
+
+                $group_products_price +=$group_product->has_varients->price;
+                $varient_order = $order_lineitem->where('shopify_variant_id',$group_product->has_varients->shopify_variant_id)->get();
+                $group_products_order_price +=$varient_order->sum('price');
+            }
+
+            array_push($overall_groups_price,$group_products_price);
+            array_push($overall_group_order_price,$group_products_order_price);
 
         }
+
 
         return view('users.generals.general')->with([
             'page_title' => 'General',
@@ -82,6 +98,9 @@ class GeneralController extends Controller
             'total_product_stockIn'=>$total_product_stockIn,
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
+            'overall_group_order_price' => $overall_group_order_price,
+            'overall_groups_price' => $overall_groups_price,
+
             'groups'=>$groups,
 
         ]);

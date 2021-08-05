@@ -32,7 +32,6 @@ class GroupController extends Controller
 
         }
 
-
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
