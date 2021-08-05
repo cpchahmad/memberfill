@@ -26,7 +26,6 @@ class GeneralController extends Controller
             $total = $product->Product_Varients->sum('sold_quantity');
             array_push($soldout_array,$total);
 
-            if ($preference != null) {
                 if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id) {
 
                     $data = Order_line_Item::whereDate('created_at', '>', now()->subDays(1))->where('shopify_product_id', $product->shopify_product_id)->get();
@@ -52,7 +51,7 @@ class GeneralController extends Controller
 
                 array_push($timefilter_value, $quantity_array);
                 array_push($timefilter_date, $date_filter);
-            }
+
             $product_stockIn = Product_Varient::where('product_id',$product->id)->get()->sum('inventory_quantity');
             array_push($total_product_stockIn,$product_stockIn);
 
