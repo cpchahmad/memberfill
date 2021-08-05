@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <h3>Group {{$index + 1}}</h3>
                             <div class="progress mt-1 bg-light" style="width: 42%">
-                                <div class="progress-bar bg-primary" style="width:{{($overall_group_order_price[$index] / $overall_groups_price[$index]) * 100}} "></div>
+                                <div class="progress-bar bg-primary" style="width:@if($overall_groups_price[$index] != 0){{($overall_group_order_price[$index] / $overall_groups_price[$index]) * 100}} @else 0 @endif "></div>
                             </div>
                             <div>
                                 {{$overall_group_order_price[$index]}} / {{$overall_groups_price[$index]}}
