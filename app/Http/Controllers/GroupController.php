@@ -48,7 +48,7 @@ class GroupController extends Controller
     }
     public function store(Request $request){
         $this->validate($request,[
-            'name'=>'required|max:8',
+            'name'=>'required',
             'limit'=>'required'
         ]);
         $group = New Group();
