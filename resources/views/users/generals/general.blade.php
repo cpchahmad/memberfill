@@ -5,15 +5,12 @@
             display: none;
         }
 
-        .form-check{
-            padding-top: 2%;
-        }
         input[type="checkbox"] {
             height: 20px;
             width: 20px;
             display: inline;
             float: left;
-            margin-top: 25px;
+            margin-top: 12px;
             outline: 0;
             -webkit-box-shadow: none;
             box-shadow: none;
