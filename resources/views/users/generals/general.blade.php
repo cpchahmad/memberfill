@@ -57,29 +57,28 @@
     </style>
 
     <div class="col-lg-12 col-md-12 p-4 bg-white">
-{{--        <div class="row" style="margin-bottom: 3%">--}}
-{{--            @dd($groups)--}}
-{{--            @foreach($groups as $index => $group)--}}
-{{--                <div class="col-md-6 ">--}}
-{{--                    <div class="row align-items-center">--}}
-{{--                        <div class="col-md-6">--}}
-{{--                            <h3>Group {{$index + 1}}</h3>--}}
-{{--                            <div class="progress mt-1 bg-light" style="width: 42%">--}}
-{{--                                <div class="progress-bar bg-primary" style="width:@if($overall_groups_price[$index] != 0){{($overall_group_order_price[$index] / $overall_groups_price[$index]) * 100}} @else 0 @endif "></div>--}}
-{{--                            </div>--}}
-{{--                            <div>--}}
-{{--                                {{$overall_group_order_price[$index]}} / {{$overall_groups_price[$index]}}--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+        <div class="row" style="margin-bottom: 3%">
+            @foreach($groups as $index => $group)
+                <div class="col-md-6 ">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h3>Group {{$index + 1}}</h3>
+                            <div class="progress mt-1 bg-light" style="width: 42%">
+                                <div class="progress-bar bg-primary" style="width:@if($overall_groups_price[$index] != 0){{($overall_group_order_price[$index] / $overall_groups_price[$index]) * 100}} @else 0 @endif "></div>
+                            </div>
+                            <div>
+                                {{$overall_group_order_price[$index]}} / {{$overall_groups_price[$index]}}
+                            </div>
+                        </div>
 
-{{--                        <div class="col-md-5">--}}
-{{--                            <canvas height="200" class="canvas-graph-group" data-labels="{{json_encode($graph_labels[$index])}}" data-values="{{json_encode($graph_values[$index])}}"></canvas>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
+                        <div class="col-md-5">
+                            <canvas height="200" class="canvas-graph-group" data-labels="{{json_encode($graph_labels[$index])}}" data-values="{{json_encode($graph_values[$index])}}"></canvas>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
-{{--        </div>--}}
+        </div>
 
 
         <div class="d-flex justify-content-between">

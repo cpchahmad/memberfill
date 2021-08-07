@@ -62,7 +62,6 @@ class GeneralController extends Controller
         $graph_labels = [];
         $overall_groups_price = [];
         $overall_group_order_price = [];
-        dd($groups);
         if ($groups != null) {
             foreach ($groups as $group) {
                 $data = DB::table('group_varients')
@@ -104,7 +103,6 @@ class GeneralController extends Controller
             'graph_labels' => $graph_labels,
             'overall_group_order_price' => $overall_group_order_price,
             'overall_groups_price' => $overall_groups_price,
-
             'groups'=>$groups,
 
         ]);
