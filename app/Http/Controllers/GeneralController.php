@@ -61,33 +61,34 @@ class GeneralController extends Controller
         $graph_labels = [];
         $overall_groups_price = [];
         $overall_group_order_price = [];
-        foreach ($groups as $group) {
-            $data = DB::table('group_varients')
-                ->where('group_id', $group->id)
-                ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date'))
-                ->groupBy('product_id')
-                ->get();
-            $value = $data->pluck('total')->toArray();
-            $label = $data->pluck('date')->toArray();
-            array_push($graph_values,$value);
-            array_push($graph_labels,$label);
+        if ($groups != null) {
+            foreach ($groups as $group) {
+                $data = DB::table('group_varients')
+                    ->where('group_id', $group->id)
+                    ->select('product_id', DB::raw('count(*) as total'), DB::raw('DATE(created_at) as date'))
+                    ->groupBy('product_id')
+                    ->get();
+                $value = $data->pluck('total')->toArray();
+                $label = $data->pluck('date')->toArray();
+                array_push($graph_values, $value);
+                array_push($graph_labels, $label);
 
-            $group_products = $group->group_details;
-            $group_products_price = 0 ;
-            $group_products_order_price = 0 ;
-            $order_lineitem = Order_line_Item::query();
-            foreach ($group_products as $group_product){
+                $group_products = $group->group_details;
+                $group_products_price = 0;
+                $group_products_order_price = 0;
+                $order_lineitem = Order_line_Item::query();
+                foreach ($group_products as $group_product) {
 
-                $group_products_price +=$group_product->has_varients->price;
-                $varient_order = $order_lineitem->where('shopify_variant_id',$group_product->has_varients->shopify_variant_id)->get();
-                $group_products_order_price +=$varient_order->sum('price');
+                    $group_products_price += $group_product->has_varients->price;
+                    $varient_order = $order_lineitem->where('shopify_variant_id', $group_product->has_varients->shopify_variant_id)->get();
+                    $group_products_order_price += $varient_order->sum('price');
+                }
+
+                array_push($overall_groups_price, $group_products_price);
+                array_push($overall_group_order_price, $group_products_order_price);
+
             }
-
-            array_push($overall_groups_price,$group_products_price);
-            array_push($overall_group_order_price,$group_products_order_price);
-
         }
-
 
         return view('users.generals.general')->with([
             'page_title' => 'General',
