@@ -63,6 +63,12 @@ input:checked + .slider:before {
 }
 </style>
 
+@if(Session::has('error'))
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ Session::get('error') }}
+    </div>
+@endif
     <div class="col-lg-12 col-md-12 p-4">
         <div class="row ">
             <div class="col-md-6 pl-3">
