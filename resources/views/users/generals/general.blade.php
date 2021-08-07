@@ -58,6 +58,7 @@
 
     <div class="col-lg-12 col-md-12 p-4 bg-white">
         <div class="row" style="margin-bottom: 3%">
+            @dd($groups)
             @foreach($groups as $index => $group)
                 <div class="col-md-6 ">
                     <div class="row align-items-center">
