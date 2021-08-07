@@ -11,6 +11,7 @@ use App\Models\Product_Varient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function Couchbase\defaultDecoder;
 
 class GeneralController extends Controller
 {
@@ -61,6 +62,7 @@ class GeneralController extends Controller
         $graph_labels = [];
         $overall_groups_price = [];
         $overall_group_order_price = [];
+        dd($groups);
         if ($groups != null) {
             foreach ($groups as $group) {
                 $data = DB::table('group_varients')
