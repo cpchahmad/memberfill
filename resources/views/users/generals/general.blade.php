@@ -16,6 +16,9 @@
             box-shadow: none;
             opacity: 1;
         }
+        .form-check{
+            padding-top: 3%;
+        }
 
         .min-content {
 
