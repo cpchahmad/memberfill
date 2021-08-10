@@ -14,7 +14,10 @@ class ProductController extends Controller
 {
     public function sync_products()
     {
-
+        $preference = Preference::get();
+        if ($preference == null){
+            return redirect(users.preferences.preference)->with('error','Firstly Enter Your Preference Here');
+        }
         $shop = Auth::user();
         $products = $shop->api()->rest('get', '/admin/api/2021-01/products.json');
         $products_data = json_decode(json_encode($products['body']['container']['products']));

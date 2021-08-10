@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['auth.shopify','Role']], function () {
     Route::get('/', function () {
-        return redirect('generals');
+        return view('users.dashboard');
     })->name('dashboard');
 
     // products
