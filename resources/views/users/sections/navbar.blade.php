@@ -19,9 +19,6 @@
                     <a class="nav-link" href="{{route('preference')}}">Preferences</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  href="">Help</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{route('sync/products')}}">Sync Products
                     </a>
                 </li>

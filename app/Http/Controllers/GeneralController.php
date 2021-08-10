@@ -16,6 +16,12 @@ class GeneralController extends Controller
 {
     public function index()
     {
+        $preference = Preference::where('shop_id',Auth::user()->id)->get();
+        if (count($preference) == 0){
+
+            return redirect('preference')->with('success','Firstly You should set the Preference');
+        }
+
         $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->paginate(20);
         $preference = Preference::where('shop_id',Auth::user()->id)->first();
         $soldout_array = [];
@@ -56,7 +62,7 @@ class GeneralController extends Controller
             array_push($total_product_stockIn,$product_stockIn);
 
         }
-        $groups = Group::get();
+        $groups = Group::where('shop_id',Auth::user()->id)->get();
         $graph_values = [];
         $graph_labels = [];
         $overall_groups_price = [];
@@ -108,19 +114,30 @@ class GeneralController extends Controller
     }
 
     public function product_soldout($id){
+        $shop = Auth::user();
+        $location = $shop->api()->rest('GET', '/admin/locations.json');
+        $location = json_decode(json_encode($location));
         $product_varients = Product_Varient::where('product_id',$id)->get();
         foreach ($product_varients as $product_varient){
-            $product_varient->inventory_quantity = 0;
-            $product_varient->save();
-
+            $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+                "location_id" => $location->body->locations[0]->id,
+                "inventory_item_id"=> $product_varient->inventory_item_id,
+                "available"=> 0
+            ]);
         }
+
         return back()->with('success','Sold Out Successfully');
     }
     public function varient_soldout($id){
+        $shop = Auth::user();
+        $location = $shop->api()->rest('GET', '/admin/locations.json');
+        $location = json_decode(json_encode($location));
         $product_varient = Product_Varient::where('id',$id)->first();
-        $product_varient->inventory_quantity = 0 ;
-        $product_varient->save();
-
+        $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+            "location_id" => $location->body->locations[0]->id,
+            "inventory_item_id"=> $product_varient->inventory_item_id,
+            "available"=> 0
+        ]);
         return back()->with('success','Sold Out Successfully');
     }
 

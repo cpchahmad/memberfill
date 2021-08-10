@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preference;
 use App\Models\Product;
 use App\Models\Product_Image;
 use App\Models\Product_Varient;
@@ -13,6 +14,7 @@ class ProductController extends Controller
 {
     public function sync_products()
     {
+
         $shop = Auth::user();
         $products = $shop->api()->rest('get', '/admin/api/2021-01/products.json');
         $products_data = json_decode(json_encode($products['body']['container']['products']));

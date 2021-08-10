@@ -15,7 +15,7 @@ use Spatie\Permission\Models\Role;
 class GroupController extends Controller
 {
     public function group_index(){
-        $groups = Group::with('group_details')->paginate('10');
+        $groups = Group::where('shop_id',Auth::user()->id)->with('group_details')->paginate('10');
         $graph_values = [];
         $graph_labels = [];
         foreach ($groups as $group) {

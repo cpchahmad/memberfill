@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Order_line_Item;
+use App\Models\Preference;
 use App\Models\Product;
 use App\Models\Product_Varient;
 use Illuminate\Database\Eloquent\Model;
@@ -15,9 +16,11 @@ class OrderController extends Controller
 {
     public function sync_orders(){
         $shop = Auth::user();
-        $orders = $shop->api()->rest('get', '/admin/api/2021-01/orders.json');
+        $orders = $shop->api()->rest('GET', '/admin/api/2021-01/orders.json');
         $orders_data = json_decode(json_encode($orders['body']['container']['orders']));
-//        dd($orders_data);
+        $preferences = Preference::where('shop_id',Auth::user()->id)->first();
+        $location = $shop->api()->rest('GET', '/admin/locations.json');
+        $location = json_decode(json_encode($location));
         foreach ($orders_data as $order_key) {
             if (Order::where('shopify_order_id',  $order_key->id)->exists()) {
                 $order = Order::where('shopify_order_id', $order_key->id)->first();
@@ -47,6 +50,7 @@ class OrderController extends Controller
             $order->save();
 
             foreach ($order_key->line_items as $item) {
+
                 $line_item = Order_line_Item::where('shopify_order_id', $item->id)->first();
                 if ($line_item == null) {
                     $line_item = new Order_line_Item();
@@ -62,12 +66,21 @@ class OrderController extends Controller
                 $line_item->item_src = (!empty($item->image))?$item->image:'';
                 $line_item->save();
 
-                    $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->count();
+                    $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->sum('quantity');
+
                     $varient = Product_Varient::where('shopify_variant_id', $item->variant_id)->first();
                      if (isset($varient)) {
                          $varient->sold_quantity += $varient_qtn;
                          $varient->updated_at = Carbon::now();
                          $varient->save();
+                     }
+
+                     if ($varient_qtn == $preferences->global_limit){
+                         $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+                             "location_id" => $location->body->locations[0]->id,
+                             "inventory_item_id"=> $varient->inventory_item_id,
+                             "available"=> 0
+                         ]);
                      }
             }
 
