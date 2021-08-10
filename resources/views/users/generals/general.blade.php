@@ -149,7 +149,7 @@
                             <div class="card-body bg-secondary">
                                 @foreach($product->Product_Varients as $varient)
                                     <div class="d-flex justify-content-between">
-                                        <div class="flex-row form-check">
+                                        <div class="flex-row">
                                             <input class="varient" type="checkbox" id="varient-{{$varient->id}}">
                                             {{--                                <label class="form-check-label " for="varient-{{$varient->id}}">--}}
                                             @if(isset($varient->varient_images->src))
