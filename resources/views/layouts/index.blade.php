@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{asset('demo/polished.min.css')}}">
     <link rel="stylesheet" href="{{asset('dist/iconic/css/open-iconic-bootstrap.min.css')}}">
     <link rel="icon" href="{{asset('assets/polished-logo-small.png')}}">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <style>
         .grid-highlight {
             padding-top: 1rem;

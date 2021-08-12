@@ -82,8 +82,7 @@ class OrderController extends Controller
 
             $varient = Product_Varient::where('shopify_variant_id', $item->variant_id)->first();
             if (isset($varient)) {
-                $varient->sold_quantity += $varient_qtn;
-                $varient->updated_at = Carbon::now();
+                $varient->sold_quantity += $item->quantity;
                 $varient->save();
             }
 

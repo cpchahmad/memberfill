@@ -54,22 +54,20 @@
             flex-basis: auto;
         }
 
+        .product:after {
+            content: "\f107";
+            font-family: 'Font Awesome 5 Free';
+            font-size: 30px;
+            font-weight: 900;
+            float: left;
+        }
+
+        .product.collapsed:after {
+            content: "\f106";
+
+        }
+
     </style>
-
-{{--    <style>--}}
-
-{{--        .btn-header-link:after {--}}
-{{--            content: "\f107";--}}
-{{--            font-family: 'Font Awesome 5 Free';--}}
-{{--            font-weight: 900;--}}
-{{--            float: right;--}}
-{{--        }--}}
-
-{{--        .btn-header-link.collapsed:after {--}}
-{{--            content: "\f106";--}}
-{{--        }--}}
-
-{{--    </style>--}}
 
     <div class="row ">
         <div class="col-md-6 ">
@@ -107,8 +105,8 @@
 
 
         <div class="d-flex justify-content-between">
-            <div class="col-md-3 text-center"><h6>Image</h6></div>
-            <div class="col-md-1"><h6>Title</h6></div>
+            <div class="col-md-2 text-right"><h6>Image</h6></div>
+            <div class="col-md-2 text-center"><h6>Title</h6></div>
             <div class="col-md-3 text-center"><h6>Graph</h6></div>
             <div class="col-md-1"><h6>Stock In</h6></div>
             <div class="col-md-1 text-center"><h6>Sold Out</h6></div>
@@ -121,12 +119,10 @@
                     <div class="card">
                         <div class="card-header bg-white" id="headingOne">
                             <div class="d-flex justify-content-between">
-{{--                                <a href="#" id="product-{{$product->id}} class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#{{$product->id}}"--}}
-{{--                                   aria-expanded="true" aria-controls="collapseOne"></a>--}}
+
                                 <div class="flex-row form-check">
-                                    <input class="product" data-toggle="collapse" data-target="#{{$product->id}}"
-                                           aria-expanded="true" aria-controls="collapseOne" type="checkbox"
-                                           id="product-{{$product->id}}">
+                                    <a href="#" id="product-{{$product->id}}" class="product items"  data-toggle="collapse" data-target="#{{$product->id}}"
+                                       aria-expanded="true" aria-controls="collapseOne"></a>
                                     {{--                                <label class="form-check-label " for="product-{{$product->id}}">--}}
 
                                     {{--                                </label>--}}
@@ -156,7 +152,7 @@
                                <div class="items">
                                    <div class="media-body text-black">
                                        <div class="progress mt-2 bg-light" style="width: 115px;">
-                                           <div class="progress-bar  bg-primary" style="width: {{($soldout_array[$index]) / ($preference->global_limit) * 100}}%;"></div>
+                                           <div class="progress-bar  bg-primary" style="width: @if($product->product_varients * $preference->global_limit != 0) {{($soldout_array[$index]) / ($product->product_varients * $preference->global_limit) * 100}}%; @endif"></div>
 
                                        </div>
 
@@ -179,7 +175,7 @@
 
                                     <div class="d-flex justify-content-between">
                                         <div class="flex-row">
-                                            <input class="varient" type="checkbox" id="varient-{{$varient->id}}">
+{{--                                            <input class="varient" type="checkbox" id="varient-{{$varient->id}}">--}}
                                             {{--                                <label class="form-check-label " for="varient-{{$varient->id}}">--}}
                                             @if(isset($varient->varient_images->src))
                                                 <img class="image" src="{{$varient->varient_images->src}}" width="70px"
@@ -230,79 +226,6 @@
         </div>
     </div>
 
-{{--    <div id="main">--}}
-{{--        <div class="container">--}}
-{{--            <div class="accordion" id="faq">--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header" id="faqhead1">--}}
-{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq1"--}}
-{{--                           aria-expanded="true" aria-controls="faq1">S.S.23</a>--}}
-{{--                    </div>--}}
-
-{{--                    <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">--}}
-{{--                        <div class="card-body">--}}
-{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
-{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
-{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
-{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
-{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
-{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header" id="faqhead2">--}}
-{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq2"--}}
-{{--                           aria-expanded="true" aria-controls="faq2">S.S.S</a>--}}
-{{--                    </div>--}}
-
-{{--                    <div id="faq2" class="collapse" aria-labelledby="faqhead2" data-parent="#faq">--}}
-{{--                        <div class="card-body">--}}
-{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
-{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
-{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
-{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
-{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
-{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header" id="faqhead3">--}}
-{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq3"--}}
-{{--                           aria-expanded="true" aria-controls="faq3">S.S.S</a>--}}
-{{--                    </div>--}}
-
-{{--                    <div id="faq3" class="collapse" aria-labelledby="faqhead3" data-parent="#faq">--}}
-{{--                        <div class="card-body">--}}
-{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
-{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
-{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
-{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
-{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
-{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">--}}
-{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">--}}
-{{--    <style>--}}
-
-{{--        #main #faq .card .card-header .btn-header-link:after {--}}
-{{--            content: "\f107";--}}
-{{--            font-family: 'Font Awesome 5 Free';--}}
-{{--            font-weight: 900;--}}
-{{--            float: right;--}}
-{{--        }--}}
-
-{{--        #main #faq .card .card-header .btn-header-link.collapsed:after {--}}
-{{--            content: "\f106";--}}
-{{--        }--}}
-
-{{--    </style>--}}
 @endsection
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>

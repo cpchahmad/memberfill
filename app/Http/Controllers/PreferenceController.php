@@ -12,30 +12,36 @@ class PreferenceController extends Controller
         return view('users.preferences.preference');
     }
     public function create_limit(Request $request){
-//        dd($request->all());
-        $this->validate($request,[
-           'global_limit'=>'Required',
-           'graph_interval'=>'Required',
-        ]);
-        $setting = Preference::where('shop_id',$request->shop_id)->first();
-        if($setting == null)
+        $shop = Auth::user();
+        $preference_data =  Preference::where('shop_id',$shop->id)->first();
+        if ($preference_data != null && $preference_data->global_limit != null){
+            $this->validate($request,[
+                'graph_interval'=>'Required',
+            ]);
+        }else{
+            $this->validate($request,[
+                'global_limit'=>'Required',
+                'graph_interval'=>'Required',
+            ]);
+        }
+        if($preference_data == null)
         {
 
         $preference = new Preference();
         $preference->global_limit = $request->global_limit;
         $preference->graph_interval = $request->graph_interval;
-        $preference->shop_id = $request->shop_id;
+        $preference->shop_id = $shop->id;
         $preference->enable_status = $request->enable_status;
         $preference->save();
-        return back();
+        return redirect('generals');
         }else{
-            $setting->global_limit = $request->global_limit;
-            $setting->graph_interval = $request->graph_interval;
-            $setting->shop_id = $request->shop_id;
-            $setting->enable_status = $request->enable_status;
-            $setting->save();
+            $preference_data->global_limit = $preference_data->global_limit;
+            $preference_data->graph_interval = $request->graph_interval;
+            $preference_data->shop_id = $shop->id;
+            $preference_data->enable_status = $request->enable_status;
+            $preference_data->save();
 
-            return back();
+            return redirect('generals');
         }
     }
 }

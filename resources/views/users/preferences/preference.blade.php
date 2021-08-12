@@ -63,10 +63,10 @@ input:checked + .slider:before {
 }
 </style>
 
-@if(Session::has('error'))
-    <div class="alert alert-danger alert-dismissible" role="alert">
+@if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        {{ Session::get('error') }}
+        {{ Session::get('success') }}
     </div>
 @endif
     <div class="col-lg-12 col-md-12 p-4">
@@ -112,7 +112,6 @@ input:checked + .slider:before {
                                 </select>
 
                             </div>
-                            <input  name="shop_id" type="hidden"  value='{{Auth::user()->id}}'>
 
                             <div class="form-group float-right">
                                 <input type="submit" class="btn btn-primary " value="Save">
