@@ -31,6 +31,9 @@ class GeneralController extends Controller
         $total_product_stockIn = [];
         foreach ($products as $product) {
             $total = $product->Product_Varients->sum('sold_quantity');
+            $varients = $product->Product_Varients->count();
+            $product->product_varients = $varients;
+//            dd($product->product_varients);
             array_push($soldout_array,$total);
 
                 if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id) {
@@ -62,7 +65,41 @@ class GeneralController extends Controller
             $product_stockIn = Product_Varient::where('product_id',$product->id)->get()->sum('inventory_quantity');
             array_push($total_product_stockIn,$product_stockIn);
 
+            $varient_timefilter_value = [];
+            $varient_timefilter_date = [];
+            foreach ($product->Product_Varients as $product_Varient){
+                if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id) {
+
+                    $varient_data = Order_line_Item::whereDate('created_at', '>', now()->subDays(1))->where('shopify_variant_id', $product_Varient->shopify_variant_id)->get();
+
+                } elseif ($preference->graph_interval == 'weekly' && $preference->shop_id == Auth::user()->id) {
+
+                    $varient_data = Order_line_Item::whereDate('created_at', '>', now()->subDays(7))->where('shopify_variant_id', $product_Varient->shopify_variant_id)->get();
+
+                } elseif ($preference->graph_interval == 'monthly' && $preference->shop_id == Auth::user()->id) {
+
+                    $varient_data = Order_line_Item::whereDate('created_at', '>', now()->subDays(30))->where('shopify_variant_id', $product_Varient->shopify_variant_id)->get();
+                } else {
+                    $varient_data = Order_line_Item::where('shopify_variant_id', $product_Varient->shopify_variant_id)->get();
+
+                }
+                $varient_quantity_array = [];
+                $varient_date_filter = [];
+                foreach ($varient_data as $key) {
+                    array_push($varient_quantity_array, $key->quantity);
+                    array_push($varient_date_filter, $key->created_at->format('Y-m-d'));
+                }
+
+                array_push($varient_timefilter_value, $varient_quantity_array);
+                array_push($varient_timefilter_date, $varient_date_filter);
+
+            }
+
+            $product->varient_graph_value = $varient_timefilter_value;
+            $product->varient_graph_date = $varient_timefilter_date;
+
         }
+
         $groups = Group::where('shop_id',Auth::user()->id)->get();
         $graph_values = [];
         $graph_labels = [];

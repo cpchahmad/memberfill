@@ -99,12 +99,12 @@ input:checked + .slider:before {
 
                             <div class="form-group">
                                 <label for="#">Enter  Limit</label>
-                                <input placeholder="Enter limit" name="global_limit" type="number"  class="form-control">
+                                <input placeholder="Enter limit" name="global_limit" type="number"  class="form-control required  @error('global_limit') is-invalid @enderror">
                             </div>
                             <div class="form-group">
                                 <label for="#">Graph Interval</label>
-                                <select class="form-control" name="graph_interval">
-                                    <option selected>--Select--</option>
+                                <select class="form-control required  @error('graph_interval') is-invalid @enderror" name="graph_interval">
+                                    <option selected disabled>--Select--</option>
                                     <option value="daily">Daily</option>
                                     <option value="weekly">Weekly</option>
                                     <option value="monthly">Monthly</option>

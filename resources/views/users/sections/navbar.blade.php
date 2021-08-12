@@ -18,15 +18,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('preference')}}">Preferences</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('sync/products')}}">Sync Products
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('sync/orders')}}">Sync Orders
-                    </a>
-                </li>
             </ul>
         </div>
         <a class="navbar-brand p-2 text-center" href="#">

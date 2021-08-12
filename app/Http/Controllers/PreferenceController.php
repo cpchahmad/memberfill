@@ -12,6 +12,11 @@ class PreferenceController extends Controller
         return view('users.preferences.preference');
     }
     public function create_limit(Request $request){
+//        dd($request->all());
+        $this->validate($request,[
+           'global_limit'=>'Required',
+           'graph_interval'=>'Required',
+        ]);
         $setting = Preference::where('shop_id',$request->shop_id)->first();
         if($setting == null)
         {
