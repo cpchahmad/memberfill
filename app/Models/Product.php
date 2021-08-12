@@ -21,6 +21,7 @@ class Product extends Model
         'images',
         'shop_id',
         'published_at',
+        'store_created_at',
         'status',
         'limit',
 

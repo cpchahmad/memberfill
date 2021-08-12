@@ -23,7 +23,7 @@ class GeneralController extends Controller
             return redirect('preference')->with('success','Firstly You should set the Preference');
         }
 
-        $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->letest()->paginate(20);
+        $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->latest('store_created_at')->paginate(20);
         $preference = Preference::where('shop_id',Auth::user()->id)->first();
         $soldout_array = [];
         $timefilter_value = [];
@@ -38,15 +38,15 @@ class GeneralController extends Controller
 
                 if ($preference->graph_interval == 'daily' && $preference->shop_id == Auth::user()->id) {
 
-                    $data = Order_line_Item::whereDate('created_at', '>', now()->subDays(1))->where('shopify_product_id', $product->shopify_product_id)->get();
+                    $data = Order_line_Item::whereDate('store_created_at', '>', now()->subDays(1))->where('shopify_product_id', $product->shopify_product_id)->get();
 
                 } elseif ($preference->graph_interval == 'weekly' && $preference->shop_id == Auth::user()->id) {
 
-                    $data = Order_line_Item::whereDate('created_at', '>', now()->subDays(7))->where('shopify_product_id', $product->shopify_product_id)->get();
+                    $data = Order_line_Item::whereDate('store_created_at', '>', now()->subDays(7))->where('shopify_product_id', $product->shopify_product_id)->get();
 
                 } elseif ($preference->graph_interval == 'monthly' && $preference->shop_id == Auth::user()->id) {
 
-                    $data = Order_line_Item::whereDate('created_at', '>', now()->subDays(30))->where('shopify_product_id', $product->shopify_product_id)->get();
+                    $data = Order_line_Item::whereDate('store_created_at', '>', now()->subDays(30))->where('shopify_product_id', $product->shopify_product_id)->get();
                 } else {
                     $data = Order_line_Item::where('shopify_product_id', $product->shopify_product_id)->get();
 

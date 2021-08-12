@@ -75,6 +75,7 @@ class OrderController extends Controller
             $line_item->quantity = $item->quantity;
             $line_item->shopify_variant_id = $item->variant_id;
             $line_item->item_src = (!empty($item->image))?$item->image:'';
+            $line_item->store_created_at = Carbon::parse($order_key->created_at)->toDateString();
             $line_item->save();
 
             $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->sum('quantity');

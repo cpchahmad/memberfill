@@ -6,6 +6,7 @@ use App\Models\Preference;
 use App\Models\Product;
 use App\Models\Product_Image;
 use App\Models\Product_Varient;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class ProductController extends Controller
         $shop = Auth::user();
         $products = $shop->api()->rest('get', '/admin/api/2021-01/products.json');
         $products_data = json_decode(json_encode($products['body']['container']['products']));
-//        dd($products_data[0]);
+//        dd(Carbon::parse($products_data[0]->created_at)->toDateString());
 
         foreach ($products_data as $product) {
             $this->createShopifyproducts($product,$shop);
@@ -54,6 +55,7 @@ class ProductController extends Controller
         $product_add->options = json_encode($product->options);
         $product_add->shop_id = $shop->id;
         $product_add->published_at = $product->published_at;
+        $product_add->store_created_at = Carbon::parse($product->created_at)->toDateString();
         $product_add->status = $product->status;
         $product_add->save();
         foreach ($product->images as $image){

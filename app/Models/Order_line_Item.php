@@ -19,5 +19,7 @@ class Order_line_Item extends Model
         'price',
         'shopify_variant_id',
         'item_src',
+        'store_created_at',
+
     ];
 }
