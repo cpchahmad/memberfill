@@ -310,6 +310,11 @@ return [
         [
             'topic' => 'orders/create',
             'address' => 'https://phpstack-176572-2081839.cloudwaysapps.com/webhook/orders-create'
+        ],
+
+        [
+        'topic' => 'products/create',
+        'address' => 'https://phpstack-176572-2081839.cloudwaysapps.com/webhook/products-create'
         ]
 
 
