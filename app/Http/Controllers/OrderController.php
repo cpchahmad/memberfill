@@ -18,9 +18,6 @@ class OrderController extends Controller
 
 
         $shop = Auth::user();
-        $webhook = $shop->api()->rest('GET', '/admin/api/2021-01/webhooks.json');
-        dd($webhook);
-
         $orders = $shop->api()->rest('GET', '/admin/api/2021-01/orders.json');
         $orders_data = json_decode(json_encode($orders['body']['container']['orders']));
         $preferences = Preference::where('shop_id',Auth::user()->id)->first();
