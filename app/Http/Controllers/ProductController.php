@@ -14,10 +14,7 @@ class ProductController extends Controller
 {
     public function sync_products()
     {
-        $shop = Auth::user();
-        $webhooks = $shop->api()->rest('get', '/admin/api/2021-01/webhooks.json');
 
-        dd($webhooks);
         $preference = Preference::get();
         if ($preference == null){
             return redirect(users.preferences.preference)->with('error','Firstly Enter Your Preference Here');
