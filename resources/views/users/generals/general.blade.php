@@ -55,6 +55,22 @@
         }
 
     </style>
+
+{{--    <style>--}}
+
+{{--        .btn-header-link:after {--}}
+{{--            content: "\f107";--}}
+{{--            font-family: 'Font Awesome 5 Free';--}}
+{{--            font-weight: 900;--}}
+{{--            float: right;--}}
+{{--        }--}}
+
+{{--        .btn-header-link.collapsed:after {--}}
+{{--            content: "\f106";--}}
+{{--        }--}}
+
+{{--    </style>--}}
+
     <div class="row ">
         <div class="col-md-6 ">
 
@@ -105,6 +121,8 @@
                     <div class="card">
                         <div class="card-header bg-white" id="headingOne">
                             <div class="d-flex justify-content-between">
+{{--                                <a href="#" id="product-{{$product->id}} class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#{{$product->id}}"--}}
+{{--                                   aria-expanded="true" aria-controls="collapseOne"></a>--}}
                                 <div class="flex-row form-check">
                                     <input class="product" data-toggle="collapse" data-target="#{{$product->id}}"
                                            aria-expanded="true" aria-controls="collapseOne" type="checkbox"
@@ -174,7 +192,8 @@
                                         </div>
 
                                         <div class="flex-row item">{{$varient->title}}</div>
-                                        <div class="flex-row"><canvas height="100" class="canvas-graph-two" data-labels="{{json_encode($product->varient_graph_date[$index])}}" data-values="{{json_encode($product->varient_graph_value[$index])}}"></canvas></div>
+                                        <div class="flex-row variant_chart">
+                                            <canvas height="100" class="canvas-graph-two" data-labels="{{json_encode($product->varient_graph_date[$index])}}" data-values="{{json_encode($product->varient_graph_value[$index])}}"></canvas></div>
                                         <div class="flex-row item">{{$varient->inventory_quantity}} In Stock</div>
                                         @if($varient->sold_quantity)
                                             <div class="flex-row item">{{$varient->sold_quantity}} / {{$preference->global_limit}}</div>
@@ -211,6 +230,79 @@
         </div>
     </div>
 
+{{--    <div id="main">--}}
+{{--        <div class="container">--}}
+{{--            <div class="accordion" id="faq">--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header" id="faqhead1">--}}
+{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq1"--}}
+{{--                           aria-expanded="true" aria-controls="faq1">S.S.23</a>--}}
+{{--                    </div>--}}
+
+{{--                    <div id="faq1" class="collapse show" aria-labelledby="faqhead1" data-parent="#faq">--}}
+{{--                        <div class="card-body">--}}
+{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
+{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
+{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
+{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
+{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
+{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header" id="faqhead2">--}}
+{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq2"--}}
+{{--                           aria-expanded="true" aria-controls="faq2">S.S.S</a>--}}
+{{--                    </div>--}}
+
+{{--                    <div id="faq2" class="collapse" aria-labelledby="faqhead2" data-parent="#faq">--}}
+{{--                        <div class="card-body">--}}
+{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
+{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
+{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
+{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
+{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
+{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header" id="faqhead3">--}}
+{{--                        <a href="#" class="btn btn-header-link collapsed" data-toggle="collapse" data-target="#faq3"--}}
+{{--                           aria-expanded="true" aria-controls="faq3">S.S.S</a>--}}
+{{--                    </div>--}}
+
+{{--                    <div id="faq3" class="collapse" aria-labelledby="faqhead3" data-parent="#faq">--}}
+{{--                        <div class="card-body">--}}
+{{--                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf--}}
+{{--                            moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.--}}
+{{--                            Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda--}}
+{{--                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea--}}
+{{--                            proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim--}}
+{{--                            aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">--}}
+{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">--}}
+{{--    <style>--}}
+
+{{--        #main #faq .card .card-header .btn-header-link:after {--}}
+{{--            content: "\f107";--}}
+{{--            font-family: 'Font Awesome 5 Free';--}}
+{{--            font-weight: 900;--}}
+{{--            float: right;--}}
+{{--        }--}}
+
+{{--        #main #faq .card .card-header .btn-header-link.collapsed:after {--}}
+{{--            content: "\f106";--}}
+{{--        }--}}
+
+{{--    </style>--}}
 @endsection
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
@@ -336,11 +428,11 @@
 </script>
 
 <script>
-    $('.for_varient').click(function () {
-        if ($('body').find('.canvas-graph-two').length > 0) {
+    $(document).ready(function () {
+    // $('.for_varient').click(function () {
+        if ($('.canvas-graph-two').length >= 1) {
 
             $('.canvas-graph-two').each(function (index,value) {
-
                 var config = {
                     type: 'line',
                     data: {
