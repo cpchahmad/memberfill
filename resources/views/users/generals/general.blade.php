@@ -121,7 +121,7 @@
                             <div class="d-flex justify-content-between">
 
                                 <div class="flex-row form-check">
-                                    <a href="#" id="product-{{$product->id}}" class="product items "  data-toggle="collapse" data-target="#{{$product->id}}"
+                                    <a href="#" id="product-{{$product->id}}" class="product items "  data-toggle="panel-collapse" data-target="#{{$product->id}}"
                                        aria-expanded="true" aria-controls="collapseOne"></a>
                                     {{--                                <label class="form-check-label " for="product-{{$product->id}}">--}}
 
