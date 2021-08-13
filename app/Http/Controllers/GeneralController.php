@@ -155,6 +155,7 @@ class GeneralController extends Controller
         $shop = Auth::user();
         $location = $shop->api()->rest('GET', '/admin/locations.json');
         $location = json_decode(json_encode($location));
+
         $product_varients = Product_Varient::where('product_id',$id)->get();
         foreach ($product_varients as $product_varient){
             $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
@@ -162,6 +163,7 @@ class GeneralController extends Controller
                 "inventory_item_id"=> $product_varient->inventory_item_id,
                 "available"=> 0
             ]);
+
         }
 
         return back()->with('success','Sold Out Successfully');
@@ -171,7 +173,7 @@ class GeneralController extends Controller
         $location = $shop->api()->rest('GET', '/admin/locations.json');
         $location = json_decode(json_encode($location));
         $product_varient = Product_Varient::where('id',$id)->first();
-        $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+      $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
             "location_id" => $location->body->locations[0]->id,
             "inventory_item_id"=> $product_varient->inventory_item_id,
             "available"=> 0
