@@ -112,9 +112,7 @@
             <div class="col-md-1 text-center"><h6>Sold Out</h6></div>
             <div class="col-md-2 text-center"><h6></h6></div>
         </div>
-        <a href="#" id="varient">
-            hello
-        </a>
+
         @if (count($products) > 0)
             @foreach($products as $index => $product )
                 <div id="product-{{$product->id}}">
@@ -354,13 +352,6 @@
     });
 </script>
 
-{{--<script>--}}
-{{--    $(document).ready(function (){--}}
-{{--        $('.for_varient').click(function (){--}}
-{{--           console.log('ok');--}}
-{{--        });--}}
-{{--    });--}}
-{{--</script>--}}
 <script>
     $(document).ready(function (){
     // $('.for_varient').click(function () {
