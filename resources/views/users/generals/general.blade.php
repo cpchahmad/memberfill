@@ -44,7 +44,7 @@
         }
 
         .item {
-            margin-top: 10px;
+            margin-top: 3%;
         }
 
         .media-body {
@@ -112,7 +112,9 @@
             <div class="col-md-1 text-center"><h6>Sold Out</h6></div>
             <div class="col-md-2 text-center"><h6></h6></div>
         </div>
-
+        <a href="#" id="varient">
+            hello
+        </a>
         @if (count($products) > 0)
             @foreach($products as $index => $product )
                 <div id="product-{{$product->id}}">
@@ -121,7 +123,7 @@
                             <div class="d-flex justify-content-between">
 
                                 <div class="flex-row form-check">
-                                    <a href="#" id="product-{{$product->id}}" class="product items"  data-toggle="collapse" data-target="#{{$product->id}}"
+                                    <a href="#" id="product-{{$product->id}}" class="product items "  data-toggle="collapse" data-target="#{{$product->id}}"
                                        aria-expanded="true" aria-controls="collapseOne"></a>
                                     {{--                                <label class="form-check-label " for="product-{{$product->id}}">--}}
 
@@ -136,18 +138,17 @@
                                 </div>
 
 
+
                                 <div class="items">
                                     <a href="#">
-                                        <div class="flex-row min-content for_varient" data-toggle="collapse" data-target="#{{$product->id}}" aria-expanded="true" aria-controls="collapseOne">{{$product->title}}</div>
+                                        <div class="flex-row min-content for_varient" data-toggle="panel-collapse" data-target="#{{$product->id}}" aria-expanded="true" aria-controls="collapseOne">{{$product->title}}</div>
                                     </a></div>
 
                                     <div class="flex-row">
                                         <canvas height="200" class="canvas-graph-one" data-labels="{{json_encode($timefilter_date[$index])}}" data-values="{{json_encode($timefilter_value[$index])}}"></canvas>
                                     </div>
 
-
                                 <div class="flex-row items">{{$total_product_stockIn[$index]}}</div>
-
 
                                <div class="items">
                                    <div class="media-body text-black">
@@ -164,17 +165,16 @@
                                         <button type="button" class="btn btn-primary item">Put Sold Out</button>
                                     </a>
                                 </div>
-
                             </div>
                         </div>
-                        <div id="{{$product->id}}" class="collapse" aria-labelledby="headingOne"
+                        <div id="{{$product->id}}" class="panel-collapse" aria-labelledby="headingOne"
                              data-parent="#product-{{$product->id}}">
                             <div class="card-body bg-secondary">
                                 @foreach($product->Product_Varients as $index => $varient)
 {{--                                    @dd(json_encode($product->varient_graph_value))--}}
 
                                     <div class="d-flex justify-content-between">
-                                        <div class="flex-row">
+                                        <div class="flex-row item">
 {{--                                            <input class="varient" type="checkbox" id="varient-{{$varient->id}}">--}}
                                             {{--                                <label class="form-check-label " for="varient-{{$varient->id}}">--}}
                                             @if(isset($varient->varient_images->src))
@@ -188,8 +188,12 @@
                                         </div>
 
                                         <div class="flex-row item">{{$varient->title}}</div>
-                                        <div class="flex-row variant_chart">
-                                            <canvas height="100" class="canvas-graph-two" data-labels="{{json_encode($product->varient_graph_date[$index])}}" data-values="{{json_encode($product->varient_graph_value[$index])}}"></canvas></div>
+
+                                        <div class="flex-row">
+                                            <canvas height="150" class="canvas-graph-two" data-labels="{{json_encode($product->varient_graph_date[$index])}}" data-values="{{json_encode($product->varient_graph_value[$index])}}"></canvas>
+                                        </div>
+
+
                                         <div class="flex-row item">{{$varient->inventory_quantity}} In Stock</div>
                                         @if($varient->sold_quantity)
                                             <div class="flex-row item">{{$varient->sold_quantity}} / {{$preference->global_limit}}</div>
@@ -197,7 +201,7 @@
                                             <div class="flex-row item">0 Sold out</div>
                                         @endif
 
-                                        <div class="flex-row">
+                                        <div class="flex-row item">
                                             <a href="{{route('varient-soldout',$varient->id)}}">
                                                 <button type="button" class="btn btn-primary item">Put Sold Out</button>
                                             </a>
@@ -350,18 +354,26 @@
     });
 </script>
 
+{{--<script>--}}
+{{--    $(document).ready(function (){--}}
+{{--        $('.for_varient').click(function (){--}}
+{{--           console.log('ok');--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 <script>
-    $(document).ready(function () {
+    $(document).ready(function (){
     // $('.for_varient').click(function () {
-        if ($('.canvas-graph-two').length >= 1) {
-
+    //     console.log('ok')
+        if ($('body').find('.canvas-graph-two').length > 0) {
             $('.canvas-graph-two').each(function (index,value) {
+                // console.log($(value).attr('data-labels'))
                 var config = {
                     type: 'line',
                     data: {
                         labels: JSON.parse($(value).attr('data-labels')),
                         datasets: [{
-                            label: 'Orders Sales',
+                            label: 'Products',
                             backgroundColor: '#5c80d1',
                             borderColor: '#5c80d1',
                             data: JSON.parse($(value).attr('data-values')),
@@ -397,7 +409,7 @@
                                 },
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'Sales'
+                                    labelString: 'Products'
                                 }
                             }]
                         }
@@ -408,5 +420,6 @@
             });
 
         }
+    // });
     });
 </script>
