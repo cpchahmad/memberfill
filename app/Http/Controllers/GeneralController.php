@@ -23,7 +23,7 @@ class GeneralController extends Controller
             return redirect('preference')->with('success','Firstly You should set the Preference');
         }
 
-        $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->latest('store_created_at')->paginate(20);
+        $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->latest('store_created_at')->paginate(10);
         $preference = Preference::where('shop_id',Auth::user()->id)->first();
         $soldout_array = [];
         $timefilter_value = [];
