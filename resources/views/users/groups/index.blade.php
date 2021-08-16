@@ -61,39 +61,39 @@
                         <div id="{{$group->id}}" class="collapse" aria-labelledby="headingOne"
                              data-parent="#group-{{$group->id}}">
                             <div class="card-body bg-secondary">
-                                @foreach($product->Product_Varients as $varient)
-                                    <div class="d-flex justify-content-between">
-                                        <div class="flex-row form-check">
-                                            @if(isset($varient->varient_images->src))
-                                                <img class="image"
-                                                     src="{{$varient->varient_images->src}}"
-                                                     width="70px"
-                                                     height="auto">
-                                            @else
-                                                <img class="image"
-                                                     src="{{asset('assets/main.png')}}"
-                                                     width="70px"
-                                                     height="auto">
-                                            @endif
-                                        </div>
+{{--                                @foreach($product->Product_Varients as $varient)--}}
+{{--                                    <div class="d-flex justify-content-between">--}}
+{{--                                        <div class="flex-row form-check">--}}
+{{--                                            @if(isset($varient->varient_images->src))--}}
+{{--                                                <img class="image"--}}
+{{--                                                     src="{{$varient->varient_images->src}}"--}}
+{{--                                                     width="70px"--}}
+{{--                                                     height="auto">--}}
+{{--                                            @else--}}
+{{--                                                <img class="image"--}}
+{{--                                                     src="{{asset('assets/main.png')}}"--}}
+{{--                                                     width="70px"--}}
+{{--                                                     height="auto">--}}
+{{--                                            @endif--}}
+{{--                                        </div>--}}
 
-                                        <div class="flex-row item">{{$varient->title}}</div>
+{{--                                        <div class="flex-row item">{{$varient->title}}</div>--}}
 
-                                        <div
-                                            class="flex-row item">{{$varient->inventory_quantity}}
-                                            In Stock
-                                        </div>
+{{--                                        <div--}}
+{{--                                            class="flex-row item">{{$varient->inventory_quantity}}--}}
+{{--                                            In Stock--}}
+{{--                                        </div>--}}
 
-                                        <div class="flex-row">
+{{--                                        <div class="flex-row">--}}
 
-                                            <div>{{$varient->sku}}</div>
+{{--                                            <div>{{$varient->sku}}</div>--}}
 
-                                        </div>
+{{--                                        </div>--}}
 
-                                    </div>
-                                    <hr class="divider">
+{{--                                    </div>--}}
+{{--                                    <hr class="divider">--}}
 
-                                @endforeach
+{{--                                @endforeach--}}
 
                             </div>
                         </div>
