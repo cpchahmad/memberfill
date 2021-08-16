@@ -71,7 +71,7 @@ class GroupController extends Controller
 
         }
 
-        return back();
+        return redirect('groups');
 
     }
 
