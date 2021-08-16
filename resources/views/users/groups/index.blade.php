@@ -37,11 +37,11 @@
     <div class="col-lg-12 col-md-12 p-4 bg-white">
 
         <div class="d-flex justify-content-between">
-            <div class="col-md-3 "><h6>Title</h6></div>
+            <div class="col-md-2 "><h6>Title</h6></div>
             <div class="col-md-2 "><h6>Limit</h6></div>
-            <div class="col-md-1"><h6>Products</h6></div>
-            <div class="col-md-1"><h6>Action</h6></div>
-            <div class="col-md-2"><h6>Graph</h6></div>
+            <div class="col-md-2"><h6>Products</h6></div>
+            <div class="col-md-2"><h6>Action</h6></div>
+            <div class="col-md-3"><h6>Graph</h6></div>
 
         </div>
         @if (count($groups) > 0)
@@ -63,10 +63,10 @@
                                     <div>{{$group->limit}}</div>
                                 </div>
 
-                                <div class="col-md-1  items">
+                                <div class="col-md-2  items">
                                     <div>{{count($group->group_details)}}</div>
                                 </div>
-                                <div class="col-md-1  items">
+                                <div class="col-md-2  items">
                                     <a href="{{route('group-delete',($group->id))}}" class="btn btn-sm btn-danger" type="button"> Delete</a>
                                 </div>
 
