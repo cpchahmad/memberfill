@@ -28,34 +28,79 @@
         @if (count($groups) > 0)
             @foreach($groups as $index => $group)
 
+                <div id="group-{{$group->id}}">
                     <div class="card">
                         <div class="card-header bg-white" id="headingOne">
                             <div class="d-flex justify-content-between">
+                                <a href="#" id="group-{{$group->id}}" class="product items"  data-toggle="collapse" data-target="#{{$group->id}}"
+                                   aria-expanded="true" aria-controls="collapseOne"></a>
 
                                 <div class="col-md-3 items">
                                     <a href="#">
-                                        <div class="flex-row min-content" >{{$group->name}}</div>
+                                        <div class="flex-row min-content" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
+                                             aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
                                 <div class="col-md-3 items">
-                                    <div>{{$group->limit}}</div>
+                                    <div>{{$product->limit}}</div>
                                 </div>
 
-                                <div class="col-md-2  items">
+                                <div class="col-md-3  items">
                                     <div>{{count($group->group_details)}}</div>
                                 </div>
                                 <div class="col-md-1  items">
                                     <a href="{{route('group-delete',($group->id))}}" class="btn btn-sm btn-danger" type="button"> Delete</a>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <canvas height="200" class="canvas-graph-one" data-labels={{json_encode($graph_labels[$index])}} data-values={{json_encode($graph_values[$index])}}></canvas>
                                 </div>
 
                             </div>
                         </div>
+                        <div id="{{$group->id}}" class="collapse" aria-labelledby="headingOne"
+                             data-parent="#group-{{$group->id}}">
+                            <div class="card-body bg-secondary">
+                                @foreach($product->Product_Varients as $varient)
+                                    <div class="d-flex justify-content-between">
+                                        <div class="flex-row form-check">
+                                            @if(isset($varient->varient_images->src))
+                                                <img class="image"
+                                                     src="{{$varient->varient_images->src}}"
+                                                     width="70px"
+                                                     height="auto">
+                                            @else
+                                                <img class="image"
+                                                     src="{{asset('assets/main.png')}}"
+                                                     width="70px"
+                                                     height="auto">
+                                            @endif
+                                        </div>
 
+                                        <div class="flex-row item">{{$varient->title}}</div>
+
+                                        <div
+                                            class="flex-row item">{{$varient->inventory_quantity}}
+                                            In Stock
+                                        </div>
+
+                                        <div class="flex-row">
+
+                                            <div>{{$varient->sku}}</div>
+
+                                        </div>
+
+                                    </div>
+                                    <hr class="divider">
+
+                                @endforeach
+
+                            </div>
+                        </div>
                     </div>
+
+                </div>
+
 
                 @endforeach
 
