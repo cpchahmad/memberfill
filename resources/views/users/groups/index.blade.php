@@ -25,10 +25,10 @@
             margin-top: 1%;
         }
         .title{
-            padding-left: 10px;
+            padding-left: 4%;
         }
         .limit{
-            margin-left: 1%;
+            margin-left: 2%;
         }
     </style>
         <div class="row ">
