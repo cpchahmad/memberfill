@@ -59,9 +59,9 @@
                             <a href="#" id="group-{{$group->id}}" class="product items"  data-toggle="collapse" data-target="#{{$group->id}}"
                                aria-expanded="true" aria-controls="collapseOne"></a>
                             <div class="d-flex justify-content-between">
-                                <div class="col-md-4 items">
+                                <div class="col-md-3 items">
                                     <a href="#">
-                                        <div class="col-md-3 " data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
+                                        <div data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
                                              aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
