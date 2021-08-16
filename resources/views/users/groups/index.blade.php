@@ -24,12 +24,7 @@
         .item{
             margin-top: 1%;
         }
-        .title{
-            padding-left: 5%;
-        }
-        .limit{
-            margin-left: 1%;
-        }
+
     </style>
         <div class="row ">
             <div class="col-md-6 ">
