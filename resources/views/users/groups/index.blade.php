@@ -24,7 +24,12 @@
         .item{
             margin-top: 1%;
         }
-
+        .title{
+            padding-left: 10px;
+        }
+        .limit{
+            margin-left: 1%;
+        }
     </style>
         <div class="row ">
             <div class="col-md-6 ">
@@ -38,7 +43,7 @@
     <div class="col-lg-12 col-md-12 p-4 bg-white">
 
         <div class="d-flex justify-content-between">
-            <div class="col-md-2 text-center"><h6>Title</h6></div>
+            <div class="col-md-2 title"><h6>Title</h6></div>
             <div class="col-md-2 limit"><h6>Limit</h6></div>
             <div class="col-md-2"><h6>Products</h6></div>
             <div class="col-md-2"><h6>Action</h6></div>
