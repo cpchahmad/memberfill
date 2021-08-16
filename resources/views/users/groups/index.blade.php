@@ -5,6 +5,18 @@
         .items{
             padding-top: 5%;
         }
+        .product:after {
+            content: "\f107";
+            font-family: 'Font Awesome 5 Free';
+            font-size: 30px;
+            font-weight: 900;
+            float: left;
+        }
+
+        .product.collapsed:after {
+            content: "\f106";
+
+        }
     </style>
         <div class="row ">
             <div class="col-md-6 ">
