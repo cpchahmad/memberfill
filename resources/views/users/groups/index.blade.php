@@ -62,12 +62,11 @@
                              data-parent="#group-{{$group->id}}">
                             <div class="card-body bg-secondary">
                                 @foreach($group->group_details as $group_detail)
-                                    @dd($group_detail->has_varients)
                                     <div class="d-flex justify-content-between">
                                         <div class="flex-row form-check">
-                                            @if(isset($varient->varient_images->src))
+                                            @if(isset($group_detail->has_varients->varient_images->src))
                                                 <img class="image"
-                                                     src="{{$varient->varient_images->src}}"
+                                                     src="{{$group_detail->has_varients->varient_images->src}}"
                                                      width="70px"
                                                      height="auto">
                                             @else
@@ -78,16 +77,16 @@
                                             @endif
                                         </div>
 
-                                        <div class="flex-row item">{{$varient->title}}</div>
+                                        <div class="flex-row item">{{$group_detail->has_varients->title}}</div>
 
                                         <div
-                                            class="flex-row item">{{$varient->inventory_quantity}}
+                                            class="flex-row item">{{$group_detail->has_varients->inventory_quantity}}
                                             In Stock
                                         </div>
 
                                         <div class="flex-row">
 
-                                            <div>{{$varient->sku}}</div>
+                                            <div>{{$group_detail->has_varients->sku}}</div>
 
                                         </div>
 
