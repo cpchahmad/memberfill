@@ -55,7 +55,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="col-md-3 items">
                                     <a href="#">
-                                        <div class="flex-row min-content" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
+                                        <div class="col-md-2" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
                                              aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
