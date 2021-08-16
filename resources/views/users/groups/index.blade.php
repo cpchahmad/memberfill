@@ -38,8 +38,8 @@
 
         <div class="d-flex justify-content-between">
             <div class="col-md-3 "><h6>Title</h6></div>
-            <div class="col-md-3 "><h6>Limit</h6></div>
-            <div class="col-md-3"><h6>Products</h6></div>
+            <div class="col-md-2 "><h6>Limit</h6></div>
+            <div class="col-md-1"><h6>Products</h6></div>
             <div class="col-md-1"><h6>Action</h6></div>
             <div class="col-md-2"><h6>Graph</h6></div>
 
