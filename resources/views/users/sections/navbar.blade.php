@@ -22,7 +22,7 @@
             </ul>
         </div>
         <a class="navbar-brand p-2 text-center" href="#">
-            <img src="assets/polished-logo-small.png" alt="logo" style="width: 50px"> Polished
+            <img src="{{asset('assets/polished-logo-small.png')}}" alt="logo" style="width: 50px"> Polished
         </a>
     </div>
 </nav>
