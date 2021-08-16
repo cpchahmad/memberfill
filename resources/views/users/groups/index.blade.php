@@ -22,7 +22,7 @@
             <div class="col-md-3 "><h6>Limit</h6></div>
             <div class="col-md-2"><h6>Products</h6></div>
             <div class="col-md-1"><h6>Action</h6></div>
-            <div class="col-md-3"><h6>Graph</h6></div>
+            <div class="col-md-2"><h6>Graph</h6></div>
 
         </div>
         @if (count($groups) > 0)
@@ -61,39 +61,40 @@
                         <div id="{{$group->id}}" class="collapse" aria-labelledby="headingOne"
                              data-parent="#group-{{$group->id}}">
                             <div class="card-body bg-secondary">
-{{--                                @foreach($product->Product_Varients as $varient)--}}
-{{--                                    <div class="d-flex justify-content-between">--}}
-{{--                                        <div class="flex-row form-check">--}}
-{{--                                            @if(isset($varient->varient_images->src))--}}
-{{--                                                <img class="image"--}}
-{{--                                                     src="{{$varient->varient_images->src}}"--}}
-{{--                                                     width="70px"--}}
-{{--                                                     height="auto">--}}
-{{--                                            @else--}}
-{{--                                                <img class="image"--}}
-{{--                                                     src="{{asset('assets/main.png')}}"--}}
-{{--                                                     width="70px"--}}
-{{--                                                     height="auto">--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
+                                @foreach($group->group_details as $group_detail)
+                                    @dd($group_detail)
+                                    <div class="d-flex justify-content-between">
+                                        <div class="flex-row form-check">
+                                            @if(isset($varient->varient_images->src))
+                                                <img class="image"
+                                                     src="{{$varient->varient_images->src}}"
+                                                     width="70px"
+                                                     height="auto">
+                                            @else
+                                                <img class="image"
+                                                     src="{{asset('assets/main.png')}}"
+                                                     width="70px"
+                                                     height="auto">
+                                            @endif
+                                        </div>
 
-{{--                                        <div class="flex-row item">{{$varient->title}}</div>--}}
+                                        <div class="flex-row item">{{$varient->title}}</div>
 
-{{--                                        <div--}}
-{{--                                            class="flex-row item">{{$varient->inventory_quantity}}--}}
-{{--                                            In Stock--}}
-{{--                                        </div>--}}
+                                        <div
+                                            class="flex-row item">{{$varient->inventory_quantity}}
+                                            In Stock
+                                        </div>
 
-{{--                                        <div class="flex-row">--}}
+                                        <div class="flex-row">
 
-{{--                                            <div>{{$varient->sku}}</div>--}}
+                                            <div>{{$varient->sku}}</div>
 
-{{--                                        </div>--}}
+                                        </div>
 
-{{--                                    </div>--}}
-{{--                                    <hr class="divider">--}}
+                                    </div>
+                                    <hr class="divider">
 
-{{--                                @endforeach--}}
+                                @endforeach
 
                             </div>
                         </div>
