@@ -24,6 +24,12 @@
         .item{
             margin-top: 1%;
         }
+        .title{
+            padding-left: 5%;
+        }
+        .limit{
+            margin-left: 12%;
+        }
     </style>
         <div class="row ">
             <div class="col-md-6 ">
@@ -55,11 +61,11 @@
                             <div class="d-flex justify-content-between">
                                 <div class="col-md-3 items">
                                     <a href="#">
-                                        <div class="col-md-3" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
+                                        <div class="col-md-3 title" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
                                              aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
-                                <div class="col-md-2 items">
+                                <div class="col-md-2 items limit">
                                     <div>{{$group->limit}}</div>
                                 </div>
 
