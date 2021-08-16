@@ -28,7 +28,7 @@
             padding-left: 5%;
         }
         .limit{
-            margin-left: 12%;
+            margin-left: 1%;
         }
     </style>
         <div class="row ">
