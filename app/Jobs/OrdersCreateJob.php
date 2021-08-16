@@ -51,31 +51,16 @@ class OrdersCreateJob implements ShouldQueue
      */
     public function handle()
     {
-//        $this->shopDomain = ShopDomain::fromNative($this->shopDomain);
-//        $shop = User::where('name', $this->shopDomain->toNative())->first();
-//        $order_key = json_decode(json_encode($this->data), false);
-//        $preferences = Preference::where('shop_id',Auth::user()->id)->first();
-//        $location = $shop->api()->rest('GET', '/admin/locations.json');
-//        $location = json_decode(json_encode($location));
-//        $orderController = new OrderController;
-//        $orderController->createShopifyOrders($order_key,$shop,$location,$preferences);
-//
-        try{
-            $this->shopDomain = ShopDomain::fromNative($this->shopDomain);
-            $shop = User::where('name', $this->shopDomain->toNative())->first();
-            $order_key = json_decode(json_encode($this->data), false);
-            $preferences = Preference::where('shop_id',$shop->id)->first();
-            $location = $shop->api()->rest('GET', '/admin/locations.json');
-            $location = json_decode(json_encode($location));
-            $orderController = new OrderController;
-            $orderController->createShopifyOrders($order_key,$shop,$location,$preferences);
 
-        }
-        catch(\Exception $e) {
-            $log = new ErrorLog();
-            $log->message = "Product Update Job ". $e->getMessage();
-            $log->save();
-        }
+        $this->shopDomain = ShopDomain::fromNative($this->shopDomain);
+        $shop = User::where('name', $this->shopDomain->toNative())->first();
+        $order_key = json_decode(json_encode($this->data), false);
+        $preferences = Preference::where('shop_id',$shop->id)->first();
+        $location = $shop->api()->rest('GET', '/admin/locations.json');
+        $location = json_decode(json_encode($location));
+        $orderController = new OrderController;
+        $orderController->createShopifyOrders($order_key,$shop,$location,$preferences);
+
 
     }
 }
