@@ -42,7 +42,7 @@
                                     </a></div>
 
                                 <div class="col-md-3 items">
-                                    <div>{{$product->limit}}</div>
+                                    <div>{{$group->limit}}</div>
                                 </div>
 
                                 <div class="col-md-3  items">
