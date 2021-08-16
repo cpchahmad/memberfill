@@ -46,10 +46,9 @@
                 <div id="group-{{$group->id}}">
                     <div class="card">
                         <div class="card-header bg-white" id="headingOne">
+                            <a href="#" id="group-{{$group->id}}" class="product items"  data-toggle="collapse" data-target="#{{$group->id}}"
+                               aria-expanded="true" aria-controls="collapseOne"></a>
                             <div class="d-flex justify-content-between">
-                                <a href="#" id="group-{{$group->id}}" class="product items"  data-toggle="collapse" data-target="#{{$group->id}}"
-                                   aria-expanded="true" aria-controls="collapseOne"></a>
-
                                 <div class="col-md-3 items">
                                     <a href="#">
                                         <div class="flex-row min-content" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
