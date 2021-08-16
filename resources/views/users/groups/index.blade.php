@@ -3,7 +3,7 @@
 
     <style>
         .items{
-            padding-top: 5%;
+            padding-top: 4%;
         }
         .product:after {
             content: "\f107";
@@ -16,6 +16,9 @@
         .product.collapsed:after {
             content: "\f106";
 
+        }
+        .divider{
+            margin: 20px 0px;
         }
     </style>
         <div class="row ">
@@ -32,7 +35,7 @@
         <div class="d-flex justify-content-between">
             <div class="col-md-3 "><h6>Title</h6></div>
             <div class="col-md-3 "><h6>Limit</h6></div>
-            <div class="col-md-2"><h6>Products</h6></div>
+            <div class="col-md-3"><h6>Products</h6></div>
             <div class="col-md-1"><h6>Action</h6></div>
             <div class="col-md-2"><h6>Graph</h6></div>
 
