@@ -63,12 +63,10 @@
                                     <div>{{$group->limit}}</div>
                                 </div>
 
-                                <div class="col-md-3  items">
+                                <div class="col-md-2  items">
                                     <div>{{count($group->group_details)}}</div>
                                 </div>
-                                <div class="col-md-1  items">
-                                    <a href="{{route('group-delete',($group->id))}}" class="btn btn-sm btn-danger" type="button"> Delete</a>
-                                </div>
+
 
                                 <div class="col-md-3">
                                     <canvas height="200" class="canvas-graph-one" data-labels={{json_encode($graph_labels[$index])}} data-values={{json_encode($graph_values[$index])}}></canvas>
