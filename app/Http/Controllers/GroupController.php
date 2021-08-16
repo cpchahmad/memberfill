@@ -56,6 +56,7 @@ class GroupController extends Controller
         $group->limit = $request->limit;
         $group->shop_id = Auth::user()->id;
         $group->save();
+
         foreach( $request->products as $key => $product ) {
 
             $varients = "varients_".$product;
@@ -72,5 +73,17 @@ class GroupController extends Controller
 
         return back();
 
+    }
+
+    public function group_delete($id){
+
+        $group = Group::findorfail($id);
+        if ($group)
+        $group->delete();
+        $group_varients = Group_Varient::where('group_id',$id)->get();
+        foreach ($group_varients as $group_varient){
+            $group_varient->delete();
+        }
+        return back();
     }
 }

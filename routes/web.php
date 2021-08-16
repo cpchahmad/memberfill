@@ -33,6 +33,7 @@ Route::group(['middleware'=>['auth.shopify','Role']], function () {
     Route::get('/groups', [App\Http\Controllers\GroupController::class, 'group_index'])->name('groups');
     Route::get('/create/group', [App\Http\Controllers\GroupController::class, 'create_index'])->name('create/group');
     Route::post('/create/group', [App\Http\Controllers\GroupController::class, 'store'])->name('create/group');
+    Route::get('/group-delete/{id}', [App\Http\Controllers\GroupController::class, 'group_delete'])->name('group-delete');
 
     //Orders
     Route::get('/sync/orders', [App\Http\Controllers\OrderController::class, 'sync_orders'])->name('sync/orders');

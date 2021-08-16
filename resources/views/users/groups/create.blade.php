@@ -55,6 +55,19 @@
             flex-basis: auto;
         }
 
+        .product:after {
+            content: "\f107";
+            font-family: 'Font Awesome 5 Free';
+            font-size: 30px;
+            font-weight: 900;
+            float: left;
+        }
+
+        .product.collapsed:after {
+            content: "\f106";
+
+        }
+
     </style>
 
     <form action="{{route('create/group')}}" method="post">
@@ -136,13 +149,11 @@
                                         <div class="card">
                                             <div class="card-header bg-white" id="headingOne">
                                                 <div class="d-flex justify-content-between">
-
+                                                    <a href="#" id="product-{{$product->id}}" class="product items"  data-toggle="collapse" data-target="#{{$product->id}}"
+                                                       aria-expanded="true" aria-controls="collapseOne"></a>
                                                     <div class="col-md-3 form-check">
-                                                        <input class="product" name="products[]"
-                                                               value="{{$product->id}}" data-toggle="collapse"
-                                                               data-target="#{{$product->id}}" aria-expanded="true"
-                                                               aria-controls="collapseOne" type="checkbox"
-                                                               id="product-{{$product->id}}">
+
+                                                        <input class="product-items" name="products[]" value="{{$product->id}}" data-toggle="collapse" data-target="#{{$product->id}}" aria-expanded="true" aria-controls="collapseOne" type="checkbox" id="product-{{$product->id}}">
                                                         {{--                                <label class="form-check-label " for="product-{{$product->id}}">--}}
 
                                                         {{--                                </label>--}}

@@ -20,7 +20,8 @@
         <div class="d-flex justify-content-between">
             <div class="col-md-3 "><h6>Title</h6></div>
             <div class="col-md-3 "><h6>Limit</h6></div>
-            <div class="col-md-3"><h6>Products</h6></div>
+            <div class="col-md-2"><h6>Products</h6></div>
+            <div class="col-md-1"><h6>Action</h6></div>
             <div class="col-md-3"><h6>Graph</h6></div>
 
         </div>
@@ -40,9 +41,13 @@
                                     <div>{{$group->limit}}</div>
                                 </div>
 
-                                <div class="col-md-3  items">
+                                <div class="col-md-2  items">
                                     <div>{{count($group->group_details)}}</div>
                                 </div>
+                                <div class="col-md-1  items">
+                                    <a href="{{route('group-delete',($group->id))}}" class="btn btn-sm btn-danger" type="button"> Delete</a>
+                                </div>
+
                                 <div class="col-md-3">
                                     <canvas height="200" class="canvas-graph-one" data-labels={{json_encode($graph_labels[$index])}} data-values={{json_encode($graph_values[$index])}}></canvas>
                                 </div>
