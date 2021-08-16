@@ -20,6 +20,9 @@
         .divider{
             margin: 20px 0px;
         }
+        .item{
+            margin-top: 1%;
+        }
     </style>
         <div class="row ">
             <div class="col-md-6 ">
@@ -77,7 +80,7 @@
                             <div class="card-body bg-secondary">
                                 @foreach($group->group_details as $group_detail)
                                     <div class="d-flex justify-content-between">
-                                        <div class="flex-row form-check">
+                                        <div class="flex-row item">
                                             @if(isset($group_detail->has_varients->varient_images->src))
                                                 <img class="image"
                                                      src="{{$group_detail->has_varients->varient_images->src}}"
@@ -98,7 +101,7 @@
                                             In Stock
                                         </div>
 
-                                        <div class="flex-row">
+                                        <div class="flex-row item">
 
                                             <div>{{$group_detail->has_varients->sku}}</div>
 
