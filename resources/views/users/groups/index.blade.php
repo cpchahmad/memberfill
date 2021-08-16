@@ -62,7 +62,7 @@
                              data-parent="#group-{{$group->id}}">
                             <div class="card-body bg-secondary">
                                 @foreach($group->group_details as $group_detail)
-                                    @dd($group_detail)
+                                    @dd($group_detail->has_varients)
                                     <div class="d-flex justify-content-between">
                                         <div class="flex-row form-check">
                                             @if(isset($varient->varient_images->src))
