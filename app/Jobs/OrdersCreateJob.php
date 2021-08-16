@@ -1,6 +1,7 @@
 <?php namespace App\Jobs;
 
 use App\Http\Controllers\OrderController;
+use App\Models\ErrorLog;
 use App\Models\Preference;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
@@ -64,7 +65,7 @@ class OrdersCreateJob implements ShouldQueue
         }
        catch (\Exception $e){
            $log = new ErrorLog();
-           $log->message = "Product Update Job ". $e->getMessage();
+           $log->message = "Order Created Job ". $e->getMessage();
            $log->save();
        }
 
