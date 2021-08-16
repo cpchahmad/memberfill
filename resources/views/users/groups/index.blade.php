@@ -43,8 +43,8 @@
     <div class="col-lg-12 col-md-12 p-4 bg-white">
 
         <div class="d-flex justify-content-between">
-            <div class="col-md-3 "><h6>Title</h6></div>
-            <div class="col-md-2 "><h6>Limit</h6></div>
+            <div class="col-md-3 title"><h6>Title</h6></div>
+            <div class="col-md-2 limit"><h6>Limit</h6></div>
             <div class="col-md-2"><h6>Products</h6></div>
             <div class="col-md-2"><h6>Action</h6></div>
             <div class="col-md-3 text-center"><h6>Graph</h6></div>
@@ -61,11 +61,11 @@
                             <div class="d-flex justify-content-between">
                                 <div class="col-md-3 items">
                                     <a href="#">
-                                        <div class="col-md-3 title" data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
+                                        <div class="col-md-3 " data-toggle="collapse" data-target="#{{$group->id}}" aria-expanded="true"
                                              aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
-                                <div class="col-md-2 items limit">
+                                <div class="col-md-2 items ">
                                     <div>{{$group->limit}}</div>
                                 </div>
 
