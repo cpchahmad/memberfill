@@ -3,7 +3,7 @@
 
     <style>
         .items{
-            padding-top: 4%;
+            padding-top: 3%;
         }
         .product:after {
             content: "\f107";
@@ -11,6 +11,7 @@
             font-size: 30px;
             font-weight: 900;
             float: left;
+            margin-top: 2%;
         }
 
         .product.collapsed:after {
