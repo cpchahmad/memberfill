@@ -40,7 +40,7 @@ class OrderController extends Controller
         }
         $order->shopify_order_id = $order_key->id;
         $order->order_number = $order_key->order_number;
-        $order->shop_id = Auth::id();
+        $order->shop_id = $shop->id;
         $order->note = $order_key->note;
         $order->date = $order_key->created_at;
         if(isset($order_key->customer)) {
