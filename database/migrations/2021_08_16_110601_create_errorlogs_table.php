@@ -21,6 +21,7 @@ class CreateErrorlogsTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *
