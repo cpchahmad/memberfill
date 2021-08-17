@@ -21,6 +21,7 @@ class GroupController extends Controller
         $preference  = Preference::where('shop_id',Auth::user()->id)->first();
         $graph_values = [];
         $graph_labels = [];
+        $group_sold_qtn = [];
         foreach ($groups as $group) {
             $data = DB::table('group_varients')
                 ->where('group_id', $group->id)
@@ -38,10 +39,10 @@ class GroupController extends Controller
                 array_push($group_varient_qtn,$varient_qtn);
             }
             $total_group_qtn = array_sum($group_varient_qtn);
-            dd($total_group_qtn);
+            array_push($group_sold_qtn,$total_group_qtn);
 
         }
-
+        dd($groups[0]->group_varient_qtn);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
