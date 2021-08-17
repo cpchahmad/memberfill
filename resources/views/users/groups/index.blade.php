@@ -107,7 +107,7 @@
                                         </div>
 
                                         <div class="flex-row item">{{$group_detail->has_varients->title}}</div>
-                                        <div class="flex-row item">{{$group->group_varient_qtn[$index]}} / {{$preference->global_limit}}</div>
+                                        <div class="flex-row item">{{$group->varient_qtn[$index]}} / {{$preference->global_limit}}</div>
                                         <div
                                             class="flex-row item">{{$group_detail->has_varients->inventory_quantity}}
                                             In Stock
