@@ -32,11 +32,12 @@ class GroupController extends Controller
             array_push($graph_values,$value);
             array_push($graph_labels,$label);
 
+            $group_varient_qtn = [];
             foreach ($group->group_details as $group_detail){
                 $varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
-                $group->group_varient_qtn = $varient_qtn;
+                array_push($group_varient_qtn,$varient_qtn);
             }
-            dd($group->group_varient_qtn);
+            dd($group_varient_qtn);
             $total_group_qtn = $group->group_varient_qtn->sum('quantity');
 
 
