@@ -80,6 +80,7 @@ class OrderController extends Controller
             $line_item->save();
 
             $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->sum('quantity');
+            $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
 
             if ($varient_qtn == $preferences->global_limit){
                 $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
@@ -97,7 +98,6 @@ class OrderController extends Controller
             $order->is_processed = 1;
             $order->save();
             foreach ($order->line_items as $line_item){
-                $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
 
                 if (isset($varient)) {
                     $varient->sold_quantity += $line_item->quantity;
