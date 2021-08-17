@@ -38,11 +38,12 @@ class GroupController extends Controller
                 $varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
                 array_push($group_varient_qtn,$varient_qtn);
             }
+            $group->varient_qtn = $group_varient_qtn;
             $total_group_qtn = array_sum($group_varient_qtn);
             array_push($group_sold_qtn,$total_group_qtn);
 
         }
-        dd($group_varient_qtn);
+        dd($group->varient_qtn);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
