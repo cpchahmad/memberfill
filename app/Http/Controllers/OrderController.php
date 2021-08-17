@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Order;
 use App\Models\Order_line_Item;
 use App\Models\Preference;
@@ -87,6 +88,7 @@ class OrderController extends Controller
                     "available"=> 0
                 ]);
             }
+
         }
 
         $Qorders = Order::where('is_processed',0)->with('line_items')->get();
@@ -103,6 +105,13 @@ class OrderController extends Controller
 
                 }
             }
+        }
+
+        $groups = Group::where('shop_id',$shop->id)->get();
+        foreach ($groups as $group){
+            dd($group->group_details);
+
+
         }
 
     }
