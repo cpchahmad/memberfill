@@ -50,7 +50,7 @@
             <div class="col-md-1 limit"><h6>Limit</h6></div>
             <div class="col-md-2 limit"><h6>Sold Out</h6></div>
             <div class="col-md-2"><h6>Products</h6></div>
-            <div class="col-md-3 text-left"><h6>Graph</h6></div>
+            <div class="col-md-3 text-center"><h6>Graph</h6></div>
             <div class="col-md-2"><h6>Action</h6></div>
 
         </div>
