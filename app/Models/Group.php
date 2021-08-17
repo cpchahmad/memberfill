@@ -10,7 +10,6 @@ class Group extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'limit',
         'shop_id',
 
     ];

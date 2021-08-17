@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Group_Varient;
+use App\Models\Preference;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class GroupController extends Controller
 {
     public function group_index(){
         $groups = Group::where('shop_id',Auth::user()->id)->with('group_details')->paginate('10');
+        $preference  = Preference::where('shop_id',Auth::user()->id)->first();
         $graph_values = [];
         $graph_labels = [];
         foreach ($groups as $group) {
@@ -36,6 +38,7 @@ class GroupController extends Controller
             'groups' => $groups,
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
+            'preference'   => $preference,
             'page_title' => 'groups'
         ]);
     }
@@ -49,7 +52,7 @@ class GroupController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'name'=>'required',
-            'limit'=>'required'
+
         ]);
         $group = New Group();
         $group->name = $request->name;

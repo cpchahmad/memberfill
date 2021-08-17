@@ -92,16 +92,12 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-3 form-group pl-4 pr-4">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label class="">Group Name:</label>
                                 <input type="text" class="form-control required  @error('name') is-invalid @enderror"
-                                       name="name"/>
+                                       name="name" placeholder="Enter Group Title Here"/>
                             </div>
-                            <div class="col-md-6 form-group">
-                                <label for="limit">Group Limit:</label>
-                                <input type="number" class="form-control required  @error('limit') is-invalid @enderror"
-                                       name="limit"/>
-                            </div>
+
                         </div>
 
                         {{--                                                @foreach($products as $product)--}}
