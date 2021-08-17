@@ -109,8 +109,8 @@ class OrderController extends Controller
 
         $groups = Group::where('shop_id',$shop->id)->get();
         foreach ($groups as $group){
-            dd($group->group_details);
-
+            dd($group->group_details->pluck('varient_id')->toArray());
+//            $group_varient_qtn =
 
         }
 
