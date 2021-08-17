@@ -106,8 +106,8 @@ class OrderController extends Controller
                 }
             }
         }
-//        $group_varient_qtn = Order_line_Item::where('shopify_variant_id',40870426607765)->sum('quantity');
-//        dd($group_varient_qtn);
+        $group_varient_qtn = Order_line_Item::where('shopify_variant_id',40870461472917)->sum('quantity');
+        dd($group_varient_qtn);
 
         $groups = Group::where('shop_id',$shop->id)->get();
         foreach ($groups as $group){
