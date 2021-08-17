@@ -77,7 +77,7 @@
                                     <div>{{$group_sold_qtn[$index]}} / {{count($group->group_details) * $preference->global_limit}}</div>
                                 </div>
 
-                                <div class="col-md-2  items">
+                                <div class="col-md-2  items text-center">
                                     <div>{{count($group->group_details)}}</div>
                                 </div>
 
