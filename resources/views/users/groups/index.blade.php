@@ -66,7 +66,7 @@
                                              aria-controls="collapseOne">{{$group->name}}</div>
                                     </a></div>
 
-                                <div class="col-md-2 items ">
+                                <div class="col-md-1 items ">
                                     <div>{{$preference->global_limit}}</div>
                                 </div>
 
