@@ -36,6 +36,7 @@ class GroupController extends Controller
                 $varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
                 $group->group_varient_qtn = $varient_qtn;
             }
+            dd($group->group_varient_qtn);
             $total_group_qtn = $group->group_varient_qtn->sum('quantity');
 
 
