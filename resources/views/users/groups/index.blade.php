@@ -107,7 +107,7 @@
                                         </div>
 
                                         <div class="flex-row item">{{$group_detail->has_varients->title}}</div>
-
+                                        <div class="flex-row item">234 / 100</div>
                                         <div
                                             class="flex-row item">{{$group_detail->has_varients->inventory_quantity}}
                                             In Stock
