@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="col-md-2 items ">
-                                    <div>343 / 100</div>
+                                    <div>{{$total_group_qtn[$index]}} / {{count($group->group_details) * $preference->global_limit}}</div>
                                 </div>
 
                                 <div class="col-md-2  items">
@@ -90,7 +90,7 @@
                         <div id="{{$group->id}}" class="collapse" aria-labelledby="headingOne"
                              data-parent="#group-{{$group->id}}">
                             <div class="card-body bg-secondary">
-                                @foreach($group->group_details as $group_detail)
+                                @foreach($group->group_details as $index => $group_detail)
                                     <div class="d-flex justify-content-between">
                                         <div class="flex-row item">
                                             @if(isset($group_detail->has_varients->varient_images->src))
@@ -107,7 +107,7 @@
                                         </div>
 
                                         <div class="flex-row item">{{$group_detail->has_varients->title}}</div>
-                                        <div class="flex-row item">234 / 100</div>
+                                        <div class="flex-row item">{{$group->group_varient_qtn[$index]}} / {{$preference->global_limit}}</div>
                                         <div
                                             class="flex-row item">{{$group_detail->has_varients->inventory_quantity}}
                                             In Stock
