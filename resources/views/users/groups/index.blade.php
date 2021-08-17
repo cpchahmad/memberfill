@@ -44,7 +44,7 @@
 
         <div class="d-flex justify-content-between">
             <div class="col-md-2 title"><h6>Title</h6></div>
-            <div class="col-md-2 limit"><h6>Limit</h6></div>
+            <div class="col-md-2 limit"><h6>Global Limit</h6></div>
             <div class="col-md-2"><h6>Products</h6></div>
             <div class="col-md-2"><h6>Action</h6></div>
             <div class="col-md-3 text-center"><h6>Graph</h6></div>

@@ -106,12 +106,19 @@ class OrderController extends Controller
                 }
             }
         }
-
         $groups = Group::where('shop_id',$shop->id)->get();
         foreach ($groups as $group){
-            dd($group->group_details->pluck('varient_id')->toArray());
-//            $group_varient_qtn =
+            foreach ($group->group_details as $group_detail){
 
+                $group_varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
+                if ($group_varient_qtn == $preferences->global_limit){
+                    $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+                        "location_id" => $location->body->locations[0]->id,
+                        "inventory_item_id"=> $group_detail->has_varients->inventory_item_id,
+                        "available"=> 0
+                    ]);
+                }
+            }
         }
 
     }
