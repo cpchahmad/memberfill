@@ -83,14 +83,14 @@ class OrderController extends Controller
             $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
 //            dd($varient_qtn >= $preferences->global_limit,1);
             if ($varient_qtn >= $preferences->global_limit){
-               $test =  $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+               $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
                     "location_id" => $location->body->locations[0]->id,
                     "inventory_item_id"=> $varient->inventory_item_id,
                     "available"=> 0,
                    "disconnect_if_necessary" => true,
 
                ]);
-                dd($test,2,$item->variant_id,$varient_qtn);
+
 
             }
 
