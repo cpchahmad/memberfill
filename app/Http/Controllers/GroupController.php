@@ -47,7 +47,7 @@ class GroupController extends Controller
             array_push($group_sold_qtn,$total_group_qtn);
 
         }
-
+        dd($group->varient_qtn);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
