@@ -38,7 +38,11 @@ class GroupController extends Controller
                 $varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
                 array_push($group_varient_qtn,$varient_qtn);
             }
-            $group->varient_qtn = $group_varient_qtn;
+            if ($group_varient_qtn == null)
+                $group->varient_qtn = 0;
+            else{
+                $group->varient_qtn = $group_varient_qtn;
+            }
             $total_group_qtn = array_sum($group_varient_qtn);
             array_push($group_sold_qtn,$total_group_qtn);
 
@@ -49,7 +53,7 @@ class GroupController extends Controller
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
             'preference'   => $preference,
-//            'group->group_varient_qtn'   => $group->group_varient_qtn,
+            'group->group_varient_qtn'   => $group->group_varient_qtn,
             'total_group_qtn'   => $total_group_qtn,
             'group_sold_qtn'   => $group_sold_qtn,
             'page_title' => 'groups'
