@@ -58,7 +58,7 @@ class GroupController extends Controller
         ]);
     }
     public function create_index(){
-        $products = Product::with('Product_Varients')->paginate('20');
+        $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->paginate('20');
         return view('users.groups.create')->with([
             'products' => $products,
             'page_title' => 'group create'
