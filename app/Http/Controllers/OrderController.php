@@ -81,13 +81,15 @@ class OrderController extends Controller
 
             $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->sum('quantity');
             $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
-
+            dd($varient_qtn >= $preferences->global_limit,1);
             if ($varient_qtn >= $preferences->global_limit){
-                $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
+               $test =  $shop->api()->rest('POST', '/admin/inventory_levels/set.json', [
                     "location_id" => $location->body->locations[0]->id,
                     "inventory_item_id"=> $varient->inventory_item_id,
                     "available"=> 0
                 ]);
+                dd($test,2);
+
             }
 
         }
