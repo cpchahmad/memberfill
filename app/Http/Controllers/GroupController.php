@@ -22,32 +22,33 @@ class GroupController extends Controller
         $graph_values = [];
         $graph_labels = [];
         $group_sold_qtn = [];
-        foreach ($groups as $group) {
-            $data = DB::table('group_varients')
-                ->where('group_id', $group->id)
-                ->select('product_id', DB::raw('count(*) as total'),DB::raw('DATE(created_at) as date'))
-                ->groupBy('product_id')
-                ->get();
-            $value = $data->pluck('total')->toArray();
-            $label = $data->pluck('date')->toArray();
-            array_push($graph_values,$value);
-            array_push($graph_labels,$label);
+        if ($groups != null) {
+            foreach ($groups as $group) {
+                $data = DB::table('group_varients')
+                    ->where('group_id', $group->id)
+                    ->select('product_id', DB::raw('count(*) as total'), DB::raw('DATE(created_at) as date'))
+                    ->groupBy('product_id')
+                    ->get();
+                $value = $data->pluck('total')->toArray();
+                $label = $data->pluck('date')->toArray();
+                array_push($graph_values, $value);
+                array_push($graph_labels, $label);
 
-            $group_varient_qtn = [];
-            foreach ($group->group_details as $group_detail){
-                $varient_qtn = Order_line_Item::where('shopify_variant_id',$group_detail->has_varients->shopify_variant_id)->sum('quantity');
-                array_push($group_varient_qtn,$varient_qtn);
-            }
-            if ($group_varient_qtn == null)
-                $group->varient_qtn = 0;
-            else{
+                $group_varient_qtn = [];
+                foreach ($group->group_details as $group_detail) {
+                    $varient_qtn = Order_line_Item::where('shopify_variant_id', $group_detail->has_varients->shopify_variant_id)->sum('quantity');
+                    array_push($group_varient_qtn, $varient_qtn);
+                }
+
                 $group->varient_qtn = $group_varient_qtn;
-            }
-            $total_group_qtn = array_sum($group_varient_qtn);
-            array_push($group_sold_qtn,$total_group_qtn);
 
+                $total_group_qtn = array_sum($group_varient_qtn);
+                array_push($group_sold_qtn, $total_group_qtn);
+
+            }
         }
-        dd($group->varient_qtn);
+
+//        dd($group->varient_qtn);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
