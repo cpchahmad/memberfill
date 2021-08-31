@@ -22,7 +22,7 @@ class GroupController extends Controller
         $graph_values = [];
         $graph_labels = [];
         $group_sold_qtn = [];
-        if ($groups != null) {
+
             foreach ($groups as $group) {
                 $data = DB::table('group_varients')
                     ->where('group_id', $group->id)
@@ -40,13 +40,13 @@ class GroupController extends Controller
                     array_push($group_varient_qtn, $varient_qtn);
                 }
 
-                $group->varient_qtn = $group_varient_qtn;
+                $groups->varient_qtn = $group_varient_qtn;
 
                 $total_group_qtn = array_sum($group_varient_qtn);
                 array_push($group_sold_qtn, $total_group_qtn);
 
             }
-        }
+
 
 //        dd($group->varient_qtn);
         return view('users.groups.index')->with([
@@ -54,7 +54,7 @@ class GroupController extends Controller
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
             'preference'   => $preference,
-            'group->group_varient_qtn'   => $group->group_varient_qtn,
+            'group->group_varient_qtn'   => $groups->group_varient_qtn,
             'total_group_qtn'   => $total_group_qtn,
             'group_sold_qtn'   => $group_sold_qtn,
             'page_title' => 'groups'
