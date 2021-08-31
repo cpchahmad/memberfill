@@ -79,8 +79,7 @@ class OrderController extends Controller
             $line_item->store_created_at = Carbon::parse($order_key->created_at)->toDateString();
             $line_item->save();
 
-            $varient_qtn = Order_line_Item::where('shopify_variant_id', 40395250860228)->sum('quantity');
-            dd($varient_qtn);
+            $varient_qtn = Order_line_Item::where('shopify_variant_id', $item->variant_id)->sum('quantity');
             $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
 
             if ($varient_qtn >= $preferences->global_limit){
