@@ -49,7 +49,7 @@ class GroupController extends Controller
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
             'preference'   => $preference,
-            'group->group_varient_qtn'   => $group->group_varient_qtn,
+//            'group->group_varient_qtn'   => $group->group_varient_qtn,
             'total_group_qtn'   => $total_group_qtn,
             'group_sold_qtn'   => $group_sold_qtn,
             'page_title' => 'groups'
