@@ -80,6 +80,7 @@ class OrderController extends Controller
             $line_item->save();
 
             $varient_qtn = Order_line_Item::where('shopify_variant_id', 40395250860228)->sum('quantity');
+            dd($varient_qtn);
             $varient = Product_Varient::where('shopify_variant_id', $line_item->shopify_variant_id)->first();
 
             if ($varient_qtn >= $preferences->global_limit){
