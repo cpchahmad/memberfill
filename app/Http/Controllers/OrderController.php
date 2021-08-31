@@ -88,7 +88,7 @@ class OrderController extends Controller
                     "inventory_item_id"=> $varient->inventory_item_id,
                     "available"=> 0
                 ]);
-                dd($test,2);
+                dd($test,2,$item->variant_id);
 
             }
 
