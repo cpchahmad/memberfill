@@ -71,7 +71,6 @@ class GroupController extends Controller
         ]);
         $group = New Group();
         $group->name = $request->name;
-        $group->limit = $request->limit;
         $group->shop_id = Auth::user()->id;
         $group->save();
 
