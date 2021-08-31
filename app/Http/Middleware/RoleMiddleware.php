@@ -29,6 +29,7 @@ class RoleMiddleware
             return $next($request);
         }else{
             Auth::user()->assignRole('merchant');
+            return $next($request);
         }
 
     }
