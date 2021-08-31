@@ -87,8 +87,8 @@ class OrderController extends Controller
                     "location_id" => $location->body->locations[0]->id,
                     "inventory_item_id"=> $varient->inventory_item_id,
                     "available"=> 0,
-                   "relocate_if_necessary" => true,
-                   "disconnect_if_necessary"=>true,
+                   "relocate_if_necessary" => false,
+
                 ]);
                 dd($test,2,$item->variant_id);
 
