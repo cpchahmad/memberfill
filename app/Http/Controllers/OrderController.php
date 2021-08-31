@@ -90,7 +90,7 @@ class OrderController extends Controller
                    "disconnect_if_necessary" => true,
 
                ]);
-                dd($test,2,$item->variant_id,$varient_qtn);
+                dd($test,2,$item->variant_id,$varient_qtn,$varient_qtn->id);
 
             }
 
