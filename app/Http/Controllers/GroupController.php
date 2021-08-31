@@ -48,7 +48,7 @@ class GroupController extends Controller
             }
 
 
-//        dd($group->varient_qtn);
+        dd($groups[0]);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
