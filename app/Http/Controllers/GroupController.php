@@ -48,13 +48,11 @@ class GroupController extends Controller
             }
 
 
-        dd($groups[0]);
         return view('users.groups.index')->with([
             'groups' => $groups,
             'graph_values' => $graph_values,
             'graph_labels' => $graph_labels,
             'preference'   => $preference,
-            'total_group_qtn'   => $total_group_qtn,
             'group_sold_qtn'   => $group_sold_qtn,
             'page_title' => 'groups'
         ]);
