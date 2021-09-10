@@ -15,6 +15,7 @@ use function Couchbase\defaultDecoder;
 
 class GeneralController extends Controller
 {
+    //DashBoard
     public function index()
     {
         $preference = Preference::where('shop_id',Auth::user()->id)->get();
@@ -151,6 +152,7 @@ class GeneralController extends Controller
         ]);
     }
 
+    //Activation of ProductSoldOut
     public function product_soldout($id){
         $shop = Auth::user();
         $location = $shop->api()->rest('GET', '/admin/locations.json');
@@ -168,6 +170,7 @@ class GeneralController extends Controller
 
         return back()->with('success','Sold Out Successfully');
     }
+    //Activation of VarientSoldOut
     public function varient_soldout($id){
         $shop = Auth::user();
         $location = $shop->api()->rest('GET', '/admin/locations.json');

@@ -39,7 +39,7 @@ Route::group(['middleware'=>['auth.shopify','Role']], function () {
     Route::get('/sync/orders', [App\Http\Controllers\OrderController::class, 'sync_orders'])->name('sync/orders');
     Route::get('/orders', [App\Http\Controllers\OrderController::class, 'orders_index'])->name('orders');
 
-    //General
+    //DashBoard
     Route::get('/generals', [App\Http\Controllers\GeneralController::class, 'index'])->name('generals');
     Route::get('/product-soldout/{id}', [App\Http\Controllers\GeneralController::class, 'product_soldout'])->name('product-soldout');
     Route::get('/varient-soldout/{id}', [App\Http\Controllers\GeneralController::class, 'varient_soldout'])->name('varient-soldout');

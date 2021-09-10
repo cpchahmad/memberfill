@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    // Synchronization of Products
     public function sync_products()
     {
-
         $preference = Preference::get();
         if ($preference == null){
             return redirect(users.preferences.preference)->with('error','Firstly Enter Your Preference Here');
@@ -31,7 +31,7 @@ class ProductController extends Controller
 
         return back();
     }
-
+    // Saving Products data into database
     public function createShopifyproducts($product, $shop)
     {
         if (Product::where('shopify_product_id',  $product->id)->exists()) {
@@ -103,7 +103,7 @@ class ProductController extends Controller
 //        Product_Varient::where('shopify_product_id', $product->id)->whereNotIn('variant_id', $variant_ids)->delete();
 
     }
-
+    // Products Index
     public function products_index()
     {
         $products = Product::where('shop_id',Auth::id())->with('Product_Varients')->paginate(50);
@@ -112,6 +112,7 @@ class ProductController extends Controller
             'page_title' => 'products'
         ]);
     }
+    // Creation of Product Limit
     public function create_limit(Request  $request ,$id){
 
         $product = Product::findorfail($id);

@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    // Synchronization of Orders
     public function sync_orders(){
-
-
         $shop = Auth::user();
         $orders = $shop->api()->rest('GET', '/admin/api/2021-01/orders.json');
         $orders_data = json_decode(json_encode($orders['body']['container']['orders']));
@@ -32,6 +31,7 @@ class OrderController extends Controller
         return back()->with('success', 'Orders Sync Successfully.');
     }
 
+    // Saving OrderDetail into Database
     public function createShopifyOrders($order_key, $shop,$location,$preferences)
     {
         if (Order::where('shopify_order_id',  $order_key->id)->exists()) {
@@ -128,6 +128,7 @@ class OrderController extends Controller
 
     }
 
+    // Orders Index
     public function orders_index(){
 
             $orders = Order::with('line_items')->get()->sortByDesc('order_number');

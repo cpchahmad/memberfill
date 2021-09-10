@@ -16,6 +16,7 @@ use Spatie\Permission\Models\Role;
 
 class GroupController extends Controller
 {
+    //Group Index
     public function group_index(){
         $groups = Group::where('shop_id',Auth::user()->id)->with('group_details')->paginate('10');
         $preference  = Preference::where('shop_id',Auth::user()->id)->first();
@@ -57,6 +58,7 @@ class GroupController extends Controller
             'page_title' => 'groups'
         ]);
     }
+    // Group Create Page
     public function create_index(){
         $products = Product::where('shop_id',Auth::user()->id)->with('Product_Varients')->paginate('20');
         return view('users.groups.create')->with([
@@ -64,6 +66,7 @@ class GroupController extends Controller
             'page_title' => 'group create'
         ]);
     }
+    // For Creating Group
     public function store(Request $request){
         $this->validate($request,[
             'name'=>'required',
@@ -92,6 +95,7 @@ class GroupController extends Controller
 
     }
 
+    // Delete Group
     public function group_delete($id){
 
         $group = Group::findorfail($id);

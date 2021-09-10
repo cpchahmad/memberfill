@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PreferenceController extends Controller
 {
+    // Preference Index
     public function index(){
         return view('users.preferences.preference');
     }
+    // Set Limit
     public function create_limit(Request $request){
         $shop = Auth::user();
         $preference_data =  Preference::where('shop_id',$shop->id)->first();
@@ -26,7 +28,6 @@ class PreferenceController extends Controller
         }
         if($preference_data == null)
         {
-
         $preference = new Preference();
         $preference->global_limit = $request->global_limit;
         $preference->graph_interval = $request->graph_interval;
